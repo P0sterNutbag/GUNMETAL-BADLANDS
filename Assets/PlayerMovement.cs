@@ -12,11 +12,15 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHiehgt = 3f;
     public float slideForce = 10f;
     public float maxSlideAngle = 90f;
+    public float turnSpeed = 180f; // for tank controls
+    public float groundDistance = 0.4f;
 
     public Transform groundCheck;
-    public float groundDistance = 0.4f;
     public LayerMask groundMask;
     public bool isHolding = false;
+    public bool isTankControls = true;
+    private float moveDirection = 0;
+    private Quaternion moveRotation;
 
     private bool isSliding = false;
 
@@ -46,19 +50,27 @@ public class PlayerMovement : MonoBehaviour
                 }
 
                 // move
-                float x = Input.GetAxis("Horizontal");
-                float z = Input.GetAxis("Vertical");
-
-                Vector3 move = transform.right * x + transform.forward * z;
-
-                controller.Move(move * speed * Time.deltaTime);
-
-                // jump
-                if (Input.GetButtonDown("Jump") && isGrounded)
+                if (!isTankControls)
                 {
-                    velocity.y = Mathf.Sqrt(jumpHiehgt * -2f * gravity);
-                }
+                    float horizontal = Input.GetAxis("Horizontal");
+                    float vertical = Input.GetAxis("Vertical");
 
+                    Vector3 move = transform.right * horizontal + transform.forward * vertical;
+
+                    controller.Move(move * speed * Time.deltaTime);
+                }
+                else 
+                {
+                    float horizontal = Input.GetAxis("Horizontal");
+                    float vertical = Input.GetAxis("Vertical");
+
+                    moveDirection += horizontal * turnSpeed * Time.deltaTime;
+                    moveRotation = Quaternion.AngleAxis(moveDirection, Vector3.up);
+                    Vector3 movementVector = moveRotation * Vector3.forward * vertical * speed * Time.deltaTime;
+                    controller.Move(movementVector);
+
+                    Debug.Log(moveDirection * vertical);
+                }
                 // jump
                 if (Input.GetButtonDown("Jump") && isGrounded)
                 {
