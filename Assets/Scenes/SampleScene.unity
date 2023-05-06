@@ -691,7 +691,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3481651933580291220, guid: fc990e429c336aa4ab1ddc16480b3b4c, type: 3}
       propertyPath: gravity
-      value: -1
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3481651933580291220, guid: fc990e429c336aa4ab1ddc16480b3b4c, type: 3}
+      propertyPath: boostMax
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3481651933580291220, guid: fc990e429c336aa4ab1ddc16480b3b4c, type: 3}
       propertyPath: jumpForce
@@ -708,6 +712,10 @@ PrefabInstance:
     - target: {fileID: 3481651933580291220, guid: fc990e429c336aa4ab1ddc16480b3b4c, type: 3}
       propertyPath: groundDistance
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3481651933580291220, guid: fc990e429c336aa4ab1ddc16480b3b4c, type: 3}
+      propertyPath: boostAcceleration
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 3481651933580291220, guid: fc990e429c336aa4ab1ddc16480b3b4c, type: 3}
       propertyPath: groundMask.m_Bits
