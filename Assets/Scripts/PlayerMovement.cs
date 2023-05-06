@@ -17,9 +17,10 @@ public class PlayerMovement : MonoBehaviour
     public float boostSpeed = 0f;
     public float boostAcceleration = 0.02f;
     public float boostMax = 12f;
-    private float boostTime = 60f;
+    public float boostTime = 60f;
     public float boostTimeMax = 60f;
     public float boostTimeChargeSpd = 0.025f;
+    public float boostCooldownTime = 1f;
 
     public Transform groundCheck;
     public LayerMask groundMask;
@@ -74,19 +75,27 @@ public class PlayerMovement : MonoBehaviour
                         isBoostVertical = false;
                     }
                 }
-
                 // boost
                 if (Input.GetKey("left shift") && boostTime > 0)
                 {
                     boostSpeed += boostAcceleration;
                     isBoosting = true;
                     boostTime -= Time.deltaTime;
+                    if (boostTime <= 0)
+                    {
+                        boostTime = -boostCooldownTime;
+                    }
                 }
                 else
                 {
                     isBoosting = false;
+                    // recharge
                     boostTime += boostTimeChargeSpd;
-                    boostTime = Mathf.Clamp(boostTime, 0, boostTimeMax);
+                    if (boostTime >= boostTimeMax)
+                    {
+                        boostTime = boostTimeMax;
+                    }
+                    // slow boost speed
                     if (boostSpeed > 0)
                     {
                         boostSpeed -= boostAcceleration;
@@ -94,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 boostSpeed = Mathf.Clamp(boostSpeed, 0, boostMax);
                 boostbar.GetComponent<Healthbar>().SetHealth(boostTime, boostTimeMax);
+                Debug.Log(boostTime);
 
                 // move
                 if (!isTankControls)
