@@ -10,6 +10,8 @@ public class ScrGuns : MonoBehaviour
     public float fireRate = 15f;
     public float bulletForce = 20f;
     public float rotationSpeed = 5f;
+    public float camZoomAmount = 2f;
+    public float camZoomSpd = 0.25f;
     public bool isHitscanR = false;
     public bool isHitscanL = false;
 
@@ -55,6 +57,8 @@ public class ScrGuns : MonoBehaviour
                 }
                 break;
         }
+
+        // zoom camera in and out
     }
 
     void Shoot(bool isHitscan, Vector3 firePoint, Quaternion fireRotation)
