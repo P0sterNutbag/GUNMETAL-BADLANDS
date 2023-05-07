@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHiehgt = 3f;
     public float slideForce = 10f;
     public float maxSlideAngle = 90f;
-    public float turnSpeed = 180f; // for tank controls
+    public float turnSpeedTank = 180f; // for tank controls
     public float groundDistance = 0.4f;
     public float boostSpeed = 0f;
     public float boostAcceleration = 0.02f;
@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public float boostTimeMax = 60f;
     public float boostTimeChargeSpd = 0.025f;
     public float boostCooldownTime = 1f;
+    public float turnSpeedNorm = 0.01f;
 
     public Transform groundCheck;
     public LayerMask groundMask;
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject boostbar;
     private float moveDirection = 0;
     private Quaternion moveRotation;
+    private Vector3 move;
 
     private bool isSliding = false;
     private bool isBoosting = false;
@@ -103,30 +105,34 @@ public class PlayerMovement : MonoBehaviour
                 }
                 boostSpeed = Mathf.Clamp(boostSpeed, 0, boostMax);
                 boostbar.GetComponent<Healthbar>().SetHealth(boostTime, boostTimeMax);
-                Debug.Log(boostTime);
 
                 // move
                 if (!isTankControls)
                 {
                     Vector3 move = transform.right * horizontal + transform.forward * vertical;
-
                     controller.Move(move * (speed+boostSpeed) * Time.deltaTime);
-
-                    // boost up if not moving
-                    if (isBoostVertical)
+                    /*Vector3 newMove = transform.right * horizontal + transform.forward * vertical;
+                    if (horizontal == 0 || vertical == 0)
                     {
-                        move = Vector3.up * boostSpeed * Time.deltaTime;
-                        controller.Move(move);
+                        Quaternion newDir = Quaternion.LookRotation(newMove);
+                        moveRotation = Quaternion.Lerp(moveRotation, newDir, turnSpeedNorm);
                     }
+                    Vector3 movementVector = moveRotation * Vector3.forward * speed * Time.deltaTime;
+                    controller.Move(movementVector);*/
                 }
                 else 
                 {
-                    moveDirection += horizontal * turnSpeed * Time.deltaTime;
+                    moveDirection += horizontal * turnSpeedTank * Time.deltaTime;
                     moveRotation = Quaternion.AngleAxis(moveDirection, Vector3.up);
                     Vector3 movementVector = moveRotation * Vector3.forward * vertical * speed * Time.deltaTime;
                     controller.Move(movementVector);
+                }
 
-                    Debug.Log(moveDirection * vertical);
+                // boost up if not moving
+                if (isBoostVertical)
+                {
+                    Vector3 newMove = Vector3.up * boostSpeed * Time.deltaTime;
+                    controller.Move(newMove);
                 }
 
                 // jump

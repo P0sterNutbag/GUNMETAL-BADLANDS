@@ -916,6 +916,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3481651933580291220, guid: fc990e429c336aa4ab1ddc16480b3b4c, type: 3}
+      propertyPath: turnSpeedNorm
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3481651933580291220, guid: fc990e429c336aa4ab1ddc16480b3b4c, type: 3}
       propertyPath: groundDistance
       value: 1
       objectReference: {fileID: 0}
