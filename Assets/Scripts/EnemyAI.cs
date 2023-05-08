@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
-using static UnityEngine.EventSystems.EventTrigger;
+using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -18,6 +16,13 @@ public class EnemyAI : MonoBehaviour
     private state currState;
     private Vector3 strafePosition;
     private bool hasStrafePosition = false;
+
+    private NavMeshAgent navMeshAgent;
+
+    private void Awake()
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+    }
 
 
     // Start is called before the first frame update
@@ -45,11 +50,11 @@ public class EnemyAI : MonoBehaviour
             }
             else
             {
-                
+
 
                 hasStrafePosition = true;
                 int x = Random.Range(-10, 10);
-                int z = Random.Range(-10,10);
+                int z = Random.Range(-10, 10);
                 strafePosition = transform.position;
                 strafePosition.x = transform.position.x + x;
                 strafePosition.z = transform.position.z + z;
@@ -59,7 +64,8 @@ public class EnemyAI : MonoBehaviour
         else if (currState == state.moving)
         {
             // Move towards the enemy 
-            transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, Time.deltaTime * speed);
+            //transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, Time.deltaTime * speed);
+            navMeshAgent.destination = targetPlayer.transform.position;
         }
 
         var rotationAngle = Quaternion.LookRotation(targetPlayer.transform.position - transform.position); // we get the angle has to be rotated
