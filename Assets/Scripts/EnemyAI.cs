@@ -9,9 +9,10 @@ public class EnemyAI : MonoBehaviour
 
     public GameObject targetPlayer;
     public float speed;
-    public float rangeToShoot;
+    public float rangeToAttack;
+    public float rangeToChase;
 
-    enum state { moving, attacking, dead, idel};
+    enum state { chase, attack, patrol};
 
     private state currState;
     private Vector3 strafePosition;
@@ -28,7 +29,7 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currState = state.moving;
+        currState = state.patrol;
     }
 
     // Update is called once per frame
@@ -40,50 +41,39 @@ public class EnemyAI : MonoBehaviour
 
         CheckForChangeInState();
 
-        if (currState == state.attacking)
+        if(currState == state.patrol)
         {
-            ShootPlayer();
-
-            if (Vector3.Distance(transform.position, strafePosition) > 3 && hasStrafePosition)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, strafePosition, Time.deltaTime * speed);
-            }
-            else
-            {
-
-
-                hasStrafePosition = true;
-                int x = Random.Range(-10, 10);
-                int z = Random.Range(-10, 10);
-                strafePosition = transform.position;
-                strafePosition.x = transform.position.x + x;
-                strafePosition.z = transform.position.z + z;
-
-            }
+            Patrol();
         }
-        else if (currState == state.moving)
+        else if (currState == state.chase)
         {
-            // Move towards the enemy 
-            //transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, Time.deltaTime * speed);
-            navMeshAgent.destination = targetPlayer.transform.position;
+            Chace();
         }
-
+        if (currState == state.attack)
+        {
+            //Attack();
+        }
+/*
         var rotationAngle = Quaternion.LookRotation(targetPlayer.transform.position - transform.position); // we get the angle has to be rotated
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotationAngle, Time.deltaTime * 10); // we rotate the rotationAngle 
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotationAngle, Time.deltaTime * 10); // we rotate the rotationAngle */
 
         
     }
 
     void CheckForChangeInState()
     {
-        if (Vector3.Distance(targetPlayer.transform.position, transform.position) <= rangeToShoot)
+        if (Vector3.Distance(targetPlayer.transform.position, transform.position) <= rangeToAttack)
         {
-            currState = state.attacking;
+            currState = state.attack;
+        }
+        else if (Vector3.Distance(targetPlayer.transform.position, transform.position) <= rangeToChase)
+        {
+            hasStrafePosition = false;
+            currState = state.chase;
         }
         else
         {
-            hasStrafePosition = false;
-            currState = state.moving;
+            currState = state.patrol;
         }
     }
 
@@ -91,5 +81,41 @@ public class EnemyAI : MonoBehaviour
     {
         //print("SHOOT");
 
+    }
+
+    void Attack()
+    {
+        ShootPlayer();
+
+        if (Vector3.Distance(transform.position, strafePosition) > 3 && hasStrafePosition)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, strafePosition, Time.deltaTime * speed);
+        }
+        else
+        {
+            // Shoot from the ray on top of the enemy
+
+            /*hasStrafePosition = true;
+            int x = Random.Range(-10, 10);
+            int z = Random.Range(-10, 10);
+            strafePosition = transform.position;
+            strafePosition.x = transform.position.x + x;
+            strafePosition.z = transform.position.z + z;*/
+
+        }
+    }
+
+    void Patrol()
+    {
+        // Do nothing right now, go back and forth from random spots???
+        navMeshAgent.destination = transform.position;
+    }
+
+    void Chace()
+    {
+        // Move the enemy towards the target
+
+        navMeshAgent.destination = targetPlayer.transform.position;
+        transform.LookAt(targetPlayer.transform);
     }
 }
