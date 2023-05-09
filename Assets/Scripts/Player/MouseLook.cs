@@ -63,13 +63,13 @@ public class MouseLook : MonoBehaviour
         }
         if (isZooming)
         {
-            float zoomAmount = gun.GetComponent<ScrGuns>().camZoomAmount;
-            float zoomSpd = gun.GetComponent<ScrGuns>().camZoomSpd;
+            float zoomAmount = gun.GetComponent<PlayerGuns>().camZoomAmount;
+            float zoomSpd = gun.GetComponent<PlayerGuns>().camZoomSpd;
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, defaultFov/zoomAmount, zoomSpd);
         }
         else 
         {
-            float zoomSpd = gun.GetComponent<ScrGuns>().camZoomSpd;
+            float zoomSpd = gun.GetComponent<PlayerGuns>().camZoomSpd;
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, defaultFov, zoomSpd);
         }
     }
