@@ -7,13 +7,16 @@ public class PlayerGuns : MonoBehaviour
     public float damage = 10f;
     public float range = 100f;
     public float impactForce = 30f;
-    public float fireRate = 15f;
+    public float fireRateL = 15f;
+    public float fireRateR = 15f;
     public float bulletForce = 20f;
     public float rotationSpeed = 5f;
     public float camZoomAmount = 2f;
     public float camZoomSpd = 0.25f;
-    public bool isHitscanR = false;
     public bool isHitscanL = false;
+    public bool isHitscanR = false;
+    public bool isAutofireL = true;
+    public bool isAutofireR = true;
 
     public Camera fpsCam;
     public Animator animator;
@@ -26,6 +29,8 @@ public class PlayerGuns : MonoBehaviour
     public TrailRenderer bulletTrail;
     private float nextTimetoFireR = 0f;
     private float nextTimetoFireL = 0f;
+    private bool fireButtonL;
+    private bool fireButtonR;
 
     Vector3 playerdif;
 
@@ -39,19 +44,24 @@ public class PlayerGuns : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // inputs
+        if (isAutofireL) { fireButtonL = Input.GetButton("Fire1"); }
+        else { fireButtonL = Input.GetButtonDown("Fire1"); }
+        if (isAutofireR) { fireButtonR = Input.GetButton("Fire2"); }
+        else { fireButtonR = Input.GetButtonDown("Fire2"); }
         // state machine
         switch (playerState.currentState)
         {
             case PlayerMovement.State.Walk:
-                if (Input.GetButtonDown("Fire1") && Time.time >= nextTimetoFireL)
+                if (fireButtonL && Time.time >= nextTimetoFireL)
                 {
-                    nextTimetoFireL = Time.time + 1f / fireRate;
+                    nextTimetoFireL = Time.time + 1f / fireRateL;
                     Shoot(isHitscanL,firePointL.transform.position,firePointL.rotation);
                     animator.SetTrigger("ShootL");
                 }
-                if (Input.GetButtonDown("Fire2") && Time.time >= nextTimetoFireR)
+                if (fireButtonR && Time.time >= nextTimetoFireR)
                 {
-                    nextTimetoFireR = Time.time + 1f / fireRate;
+                    nextTimetoFireR = Time.time + 1f / fireRateR;
                     Shoot(isHitscanR, firePointR.transform.position, firePointR.rotation);
                     animator.SetTrigger("ShootR");
                 }
