@@ -108,7 +108,7 @@ NavMeshSettings:
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 1
-    agentSlope: 55.1
+    agentSlope: 60
     agentClimb: 1
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
@@ -117,7 +117,7 @@ NavMeshSettings:
     cellSize: 0.075
     manualTileSize: 0
     tileSize: 256
-    accuratePlacement: 0
+    accuratePlacement: 1
     maxJobWorkers: 0
     preserveTilesOutsideBounds: 0
     debug:
@@ -1734,15 +1734,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3406645076314846946, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 224.44632
+      value: 189.2
       objectReference: {fileID: 0}
     - target: {fileID: 3406645076314846946, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.98
+      value: 11.8
       objectReference: {fileID: 0}
     - target: {fileID: 3406645076314846946, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 307.08
+      value: 260.8
       objectReference: {fileID: 0}
     - target: {fileID: 3406645076314846946, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
       propertyPath: m_LocalRotation.w
