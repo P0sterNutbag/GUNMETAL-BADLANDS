@@ -11,12 +11,14 @@ public class EnemyAI : MonoBehaviour
     public float speed;
     public float rangeToAttack;
     public float rangeToChase;
+    public GameObject ray;
 
     enum state { chase, attack, patrol};
 
     private state currState;
     private Vector3 strafePosition;
     private bool hasStrafePosition = false;
+    private int groundLayerMask = 1 << 3;
 
     private NavMeshAgent navMeshAgent;
 
@@ -49,9 +51,9 @@ public class EnemyAI : MonoBehaviour
         {
             Chace();
         }
-        if (currState == state.attack)
+        else if (currState == state.attack)
         {
-            //Attack();
+            Attack();
         }
 /*
         var rotationAngle = Quaternion.LookRotation(targetPlayer.transform.position - transform.position); // we get the angle has to be rotated
@@ -64,6 +66,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (Vector3.Distance(targetPlayer.transform.position, transform.position) <= rangeToAttack)
         {
+            //navMeshAgent.ResetPath();
             currState = state.attack;
         }
         else if (Vector3.Distance(targetPlayer.transform.position, transform.position) <= rangeToChase)
@@ -73,6 +76,7 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
+            hasStrafePosition = false;
             currState = state.patrol;
         }
     }
@@ -85,24 +89,52 @@ public class EnemyAI : MonoBehaviour
 
     void Attack()
     {
-        ShootPlayer();
+        //ShootPlayer();
 
-        if (Vector3.Distance(transform.position, strafePosition) > 3 && hasStrafePosition)
+        if (Vector3.Distance(transform.position, strafePosition) > 0.1 && hasStrafePosition)
         {
-            transform.position = Vector3.MoveTowards(transform.position, strafePosition, Time.deltaTime * speed);
+            navMeshAgent.destination = strafePosition;
+            transform.LookAt(targetPlayer.transform);
+            //print("slay");
         }
         else
         {
-            // Shoot from the ray on top of the enemy
+            // Shoot from the ray on top of the enemy????
 
-            /*hasStrafePosition = true;
-            int x = Random.Range(-10, 10);
+            hasStrafePosition = true;
+            GetStrafePosition();
+            navMeshAgent.ResetPath();
+            print(strafePosition);
+            /*int x = Random.Range(-10, 10);
             int z = Random.Range(-10, 10);
             strafePosition = transform.position;
             strafePosition.x = transform.position.x + x;
             strafePosition.z = transform.position.z + z;*/
 
         }
+    }
+
+    void GetStrafePosition()
+    {
+        Vector3 rayToShoot = ray.transform.position;
+        ray.transform.Rotate(0, 0, -45, Space.Self);
+
+        Transform rayTransform = ray.transform;
+        RaycastHit hit;
+
+        if (Physics.Raycast(rayToShoot, rayTransform.right, out hit, 30f, groundLayerMask))
+        {
+            
+            Debug.DrawRay(rayToShoot, rayTransform.right * hit.distance, Color.yellow);
+            hasStrafePosition = true;
+            strafePosition = hit.point;
+        }
+        else
+        {
+            Debug.DrawRay(rayToShoot, rayTransform.right * 1000, Color.green);
+        }
+
+        ray.transform.Rotate(0, 0, 45, Space.Self);
     }
 
     void Patrol()
