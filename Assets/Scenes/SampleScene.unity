@@ -1790,6 +1790,14 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
+      propertyPath: gunTypeL
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
+      propertyPath: gunTypeR
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
       propertyPath: firePointL
       value: 
       objectReference: {fileID: 1208748409}
@@ -1809,6 +1817,14 @@ PrefabInstance:
       propertyPath: playerState
       value: 
       objectReference: {fileID: 1554895891}
+    - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
+      propertyPath: missileForce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
+      propertyPath: missilePrefab
+      value: 
+      objectReference: {fileID: 8169612496048947510, guid: d21cab4c44493494ab1fb65848f86b62, type: 3}
     - target: {fileID: 7228910733886199450, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
       propertyPath: m_Name
       value: PlayerGuns

@@ -10,6 +10,8 @@ public class PlayerGuns : MonoBehaviour
     public float fireRateL = 15f;
     public float fireRateR = 15f;
     public float bulletForce = 20f;
+    public float missileForceStart = 5f;
+    public float missileForceMax = 20f;
     public float rotationSpeed = 5f;
     public float camZoomAmount = 2f;
     public float camZoomSpd = 0.25f;
@@ -21,6 +23,7 @@ public class PlayerGuns : MonoBehaviour
     public Camera fpsCam;
     public Animator animator;
     public GameObject bulletPrefab;
+    public GameObject missilePrefab;
     public Transform firePointL;
     public Transform firePointR;
     public GameObject bulletImpact;
@@ -31,6 +34,16 @@ public class PlayerGuns : MonoBehaviour
     private float nextTimetoFireL = 0f;
     private bool fireButtonL;
     private bool fireButtonR;
+    private Vector3 aimPoint;
+
+    public enum gunType
+    { 
+        hitscan,
+        projectile,
+        missile
+    }
+    public gunType gunTypeL = gunType.projectile;
+    public gunType gunTypeR = gunType.hitscan;
 
     Vector3 playerdif;
 
@@ -56,13 +69,13 @@ public class PlayerGuns : MonoBehaviour
                 if (fireButtonL && Time.time >= nextTimetoFireL)
                 {
                     nextTimetoFireL = Time.time + 1f / fireRateL;
-                    Shoot(isHitscanL,firePointL.transform.position,firePointL.rotation);
+                    Shoot(gunTypeL,firePointL.transform.position,firePointL.rotation);
                     animator.SetTrigger("ShootL");
                 }
                 if (fireButtonR && Time.time >= nextTimetoFireR)
                 {
                     nextTimetoFireR = Time.time + 1f / fireRateR;
-                    Shoot(isHitscanR, firePointR.transform.position, firePointR.rotation);
+                    Shoot(gunTypeR, firePointR.transform.position, firePointR.rotation);
                     animator.SetTrigger("ShootR");
                 }
                 break;
@@ -71,14 +84,14 @@ public class PlayerGuns : MonoBehaviour
         // zoom camera in and out
     }
 
-    void Shoot(bool isHitscan, Vector3 firePoint, Quaternion fireRotation)
+    void Shoot(gunType myGunType, Vector3 firePoint, Quaternion fireRotation)
     {
         // get direction towards camera
         Vector3 aimDir;
         RaycastHit cast;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out cast, range))
         {
-            Vector3 aimPoint = cast.point;
+            aimPoint = cast.point;
             Vector3 dir = aimPoint - firePoint;
             aimDir = dir.normalized;
         }
@@ -87,40 +100,58 @@ public class PlayerGuns : MonoBehaviour
             aimDir = transform.forward;
         }
 
-        if (!isHitscan)
+        switch (myGunType)
         {
-            // Create a new bullet object at the fire point
-            GameObject bullet = Instantiate(bulletPrefab, firePoint, fireRotation);
-
-            // Get the rigidbody component of the bullet object and apply a force to it to shoot it
-            Rigidbody rb = bullet.GetComponent<Rigidbody>();
-            rb.AddForce(aimDir * bulletForce, ForceMode.Impulse);
-        }
-        else
-        {
-            // make bullet trail
-            var bullet = Instantiate(bulletTrail, firePoint, Quaternion.identity);
-            bullet.AddPosition(firePoint);
-            {
-                bullet.transform.position = firePoint + (aimDir * 200);
-            }
-
-            RaycastHit hit;
-            if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
-            {
-                EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
-                Vector3 hitPosition = hit.point;
-
-                if (target != null)
+            case gunType.hitscan:
+                // make bullet trail
+                var bullet = Instantiate(bulletTrail, firePoint, Quaternion.identity);
+                bullet.AddPosition(firePoint);
                 {
-                    target.TakeDamage(damage);
+                    bullet.transform.position = firePoint + (aimDir * 200);
                 }
 
-                if (hit.rigidbody != null)
+                RaycastHit hit;
+                if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
                 {
-                    hit.rigidbody.AddForce(-hit.normal * impactForce);
+                    EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
+                    Vector3 hitPosition = hit.point;
+
+                    if (target != null)
+                    {
+                        target.TakeDamage(damage);
+                    }
+
+                    if (hit.rigidbody != null)
+                    {
+                        hit.rigidbody.AddForce(-hit.normal * impactForce);
+                    }
                 }
-            }
+                break;
+            case gunType.projectile:
+                // Create a new bullet object at the fire point
+                GameObject projectileBullet = Instantiate(bulletPrefab, firePoint, fireRotation);
+
+                // Get the rigidbody component of the bullet object and apply a force to it to shoot it
+                Rigidbody rb = projectileBullet.GetComponent<Rigidbody>();
+                rb.AddForce(aimDir * bulletForce, ForceMode.Impulse);
+                break;
+            case gunType.missile:
+                // Create a new bullet object at the fire point
+                GameObject missile = Instantiate(missilePrefab, firePoint, fireRotation);
+
+                // set missile target position
+                missile.GetComponent<Missile>().target = aimPoint;
+                missile.GetComponent<Missile>().speed = missileForceStart;
+                missile.GetComponent<Missile>().maxSpeed = missileForceMax;
+
+                // randomize direction
+                float randomRange = 10f;
+                Vector3 missleDir = aimDir + new Vector3(Random.Range(-randomRange, randomRange), Random.Range(-randomRange, randomRange), Random.Range(-randomRange, randomRange));
+
+                // Get the rigidbody component of the bullet object and apply a force to it to shoot it
+                rb = missile.GetComponent<Rigidbody>();
+                rb.AddForce(missleDir * missileForceStart, ForceMode.Impulse);
+                break;
         }
     }
 

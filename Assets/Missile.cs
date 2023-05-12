@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class scrBullet : MonoBehaviour
+public class Missile : MonoBehaviour
 {
+    public float maxSpeed = 20f;
+    public float speed;
     public float lifetime = 2f;
     public int damage = 10;
+    public Vector3 target;
     //public float speed;
 
     private Rigidbody rb;
@@ -18,6 +21,20 @@ public class scrBullet : MonoBehaviour
 
         // Destroy the bullet after its lifetime has expired
         Destroy(gameObject, lifetime);
+    }
+    private void Update()
+    {
+        if (target == null)
+            return;
+
+        Vector3 direction = (target - transform.position).normalized;
+
+        // Apply force to the missile's Rigidbody to move it towards the target
+        speed = Mathf.Lerp(speed, maxSpeed, 0.1f);
+        rb.velocity = direction * speed;
+
+        // Rotate the missile to look at the target
+        transform.rotation = Quaternion.LookRotation(direction);
     }
 
     void OnTriggerEnter(Collider other)
