@@ -32,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
     private Quaternion moveRotation;
     private Vector3 move;
 
-    private bool isSliding = false;
     private bool isBoosting = false;
     private bool isBoostVertical = false;
 

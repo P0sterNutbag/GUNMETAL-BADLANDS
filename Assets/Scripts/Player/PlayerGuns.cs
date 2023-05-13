@@ -12,13 +12,14 @@ public class PlayerGuns : MonoBehaviour
     public float bulletForce = 20f;
     public float missileForceStart = 5f;
     public float missileForceMax = 20f;
+    public int missileDamage = 5;
     public float rotationSpeed = 5f;
     public float camZoomAmount = 2f;
     public float camZoomSpd = 0.25f;
-    public bool isHitscanL = false;
-    public bool isHitscanR = false;
-    public bool isAutofireL = true;
-    public bool isAutofireR = true;
+    public float bulletsPerShotL = 3f;
+    public float bulletsDelayL = 0.5f;
+    public float bulletsPerShotR = 3f;
+    public float bulletsDelayR = 0.5f;
 
     public Camera fpsCam;
     public Animator animator;
@@ -32,8 +33,14 @@ public class PlayerGuns : MonoBehaviour
     public TrailRenderer bulletTrail;
     private float nextTimetoFireR = 0f;
     private float nextTimetoFireL = 0f;
+    private float nextTimetoBulletR = 0f;
+    private float nextTimetoBulletL = 0f;
+    private float bulletCounterR = 0f;
+    private float bulletCounterL = 0f;
     private bool fireButtonL;
     private bool fireButtonR;
+    private bool isShootingL;
+    private bool isShootingR;
     private Vector3 aimPoint;
 
     public enum gunType
@@ -44,6 +51,15 @@ public class PlayerGuns : MonoBehaviour
     }
     public gunType gunTypeL = gunType.projectile;
     public gunType gunTypeR = gunType.hitscan;
+
+    public enum fireType
+    {
+        single,
+        burst,
+        auto
+    }
+    public fireType fireTypeL = fireType.single;
+    public fireType fireTypeR = fireType.burst;
 
     Vector3 playerdif;
 
@@ -58,9 +74,9 @@ public class PlayerGuns : MonoBehaviour
     void Update()
     {
         // inputs
-        if (isAutofireL) { fireButtonL = Input.GetButton("Fire1"); }
+        if (fireTypeL == fireType.auto) { fireButtonL = Input.GetButton("Fire1"); }
         else { fireButtonL = Input.GetButtonDown("Fire1"); }
-        if (isAutofireR) { fireButtonR = Input.GetButton("Fire2"); }
+        if (fireTypeR == fireType.auto) { fireButtonR = Input.GetButton("Fire2"); }
         else { fireButtonR = Input.GetButtonDown("Fire2"); }
         // state machine
         switch (playerState.currentState)
@@ -69,14 +85,34 @@ public class PlayerGuns : MonoBehaviour
                 if (fireButtonL && Time.time >= nextTimetoFireL)
                 {
                     nextTimetoFireL = Time.time + 1f / fireRateL;
-                    Shoot(gunTypeL,firePointL.transform.position,firePointL.rotation);
+                    bulletCounterL = 0f;
                     animator.SetTrigger("ShootL");
                 }
                 if (fireButtonR && Time.time >= nextTimetoFireR)
                 {
                     nextTimetoFireR = Time.time + 1f / fireRateR;
-                    Shoot(gunTypeR, firePointR.transform.position, firePointR.rotation);
+                    bulletCounterR = 0f;
                     animator.SetTrigger("ShootR");
+                }
+                // actually fire bullets from left gun
+                if (bulletCounterL < bulletsPerShotL)
+                {
+                    if (Time.time >= nextTimetoBulletL)
+                    {
+                        Shoot(gunTypeL, firePointL.transform.position, firePointL.rotation);
+                        bulletCounterL++;
+                        nextTimetoBulletL = Time.time + bulletsDelayL;
+                    }
+                }
+                // actually fire bullets from right gun
+                if (bulletCounterR < bulletsPerShotR)
+                {
+                    if (Time.time >= nextTimetoBulletR)
+                    {
+                        Shoot(gunTypeR, firePointR.transform.position, firePointR.rotation);
+                        bulletCounterR++;
+                        nextTimetoBulletR = Time.time + bulletsDelayR;
+                    }
                 }
                 break;
         }
@@ -143,14 +179,15 @@ public class PlayerGuns : MonoBehaviour
                 missile.GetComponent<Missile>().target = aimPoint;
                 missile.GetComponent<Missile>().speed = missileForceStart;
                 missile.GetComponent<Missile>().maxSpeed = missileForceMax;
+                missile.GetComponent<Missile>().explosionDamage = missileDamage;
 
                 // randomize direction
-                float randomRange = 10f;
-                Vector3 missleDir = aimDir + new Vector3(Random.Range(-randomRange, randomRange), Random.Range(-randomRange, randomRange), Random.Range(-randomRange, randomRange));
+                //float randomRange = 10f;
+                //Vector3 missleDir = aimDir + new Vector3(Random.Range(-randomRange, randomRange), Random.Range(-randomRange, randomRange), Random.Range(-randomRange, randomRange));
 
                 // Get the rigidbody component of the bullet object and apply a force to it to shoot it
                 rb = missile.GetComponent<Rigidbody>();
-                rb.AddForce(missleDir * missileForceStart, ForceMode.Impulse);
+                rb.AddForce(aimDir * missileForceStart, ForceMode.Impulse);
                 break;
         }
     }

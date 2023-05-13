@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8169612496048947511}
   - component: {fileID: 3101730174187743717}
   - component: {fileID: -6561129950987732258}
+  - component: {fileID: 4320311214566540613}
   m_Layer: 0
   m_Name: PlayerMissile
   m_TagString: Untagged
@@ -25,15 +26,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8169612496048947510}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 222.14082, y: 5.611537, z: 259.2445}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8169612496120942714}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3101730174187743717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,8 +50,9 @@ MonoBehaviour:
   maxSpeed: 20
   speed: 0
   lifetime: 2
-  damage: 10
+  explosionDamage: 100
   target: {x: 0, y: 0, z: 0}
+  explosionPrefab: {fileID: 100004, guid: b46890100828db6429ff69c322b45893, type: 3}
 --- !u!54 &-6561129950987732258
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -67,6 +69,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &4320311214566540613
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8169612496048947510}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.29
+  m_Height: 1.18
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8169612496120942717
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +94,6 @@ GameObject:
   - component: {fileID: 8169612496120942714}
   - component: {fileID: 8169612496120942713}
   - component: {fileID: 8169612496120942712}
-  - component: {fileID: 8169612496120942715}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -151,17 +166,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8169612496120942715
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8169612496120942717}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
