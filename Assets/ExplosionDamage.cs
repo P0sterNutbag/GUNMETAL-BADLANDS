@@ -6,6 +6,13 @@ public class ExplosionDamage : MonoBehaviour
 {
     public int damage;
     public float damageRadius;
+
+    private void Start()
+    {
+        SphereCollider sphereCollider = GetComponent<SphereCollider>();
+        damageRadius = sphereCollider.radius;
+    }
+
     private void OnEnable()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, damageRadius);

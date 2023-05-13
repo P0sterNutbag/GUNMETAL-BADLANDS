@@ -1795,7 +1795,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
       propertyPath: gunTypeR
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
+      propertyPath: fireTypeR
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
+      propertyPath: burstCount
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
       propertyPath: firePointL
@@ -1814,6 +1822,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
+      propertyPath: bulletForce
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
       propertyPath: isAutofireL
       value: 0
       objectReference: {fileID: 0}
@@ -1822,13 +1834,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1554895891}
     - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
+      propertyPath: bulletsDelay
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
       propertyPath: missileForce
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
+      propertyPath: bulletsDelayL
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
+      propertyPath: bulletsDelayR
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
       propertyPath: missilePrefab
       value: 
       objectReference: {fileID: 8169612496048947510, guid: d21cab4c44493494ab1fb65848f86b62, type: 3}
+    - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
+      propertyPath: bulletsPerShot
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
+      propertyPath: bulletsPerShotR
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
       propertyPath: missileForceMax
       value: 150

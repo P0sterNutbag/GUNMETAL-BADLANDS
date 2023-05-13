@@ -85,13 +85,27 @@ public class PlayerGuns : MonoBehaviour
                 if (fireButtonL && Time.time >= nextTimetoFireL)
                 {
                     nextTimetoFireL = Time.time + 1f / fireRateL;
-                    bulletCounterL = 0f;
+                    if (fireTypeL == fireType.burst)
+                    {
+                        bulletCounterL = 0f;
+                    }
+                    else 
+                    {
+                        Shoot(gunTypeL, firePointL.transform.position, firePointL.rotation);
+                    }
                     animator.SetTrigger("ShootL");
                 }
                 if (fireButtonR && Time.time >= nextTimetoFireR)
                 {
                     nextTimetoFireR = Time.time + 1f / fireRateR;
-                    bulletCounterR = 0f;
+                    if (fireTypeR == fireType.burst)
+                    {
+                        bulletCounterR = 0f;
+                    }
+                    else
+                    {
+                        Shoot(gunTypeR, firePointR.transform.position, firePointR.rotation);
+                    }
                     animator.SetTrigger("ShootR");
                 }
                 // actually fire bullets from left gun

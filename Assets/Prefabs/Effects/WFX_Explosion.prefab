@@ -4760,6 +4760,7 @@ GameObject:
   - component: {fileID: 19900004}
   - component: {fileID: 11400000}
   - component: {fileID: 5765790314430818244}
+  - component: {fileID: 1806383004476627793}
   m_Layer: 0
   m_Name: WFX_Explosion
   m_TagString: Untagged
@@ -9576,6 +9577,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   damageRadius: 2
+--- !u!135 &1806383004476627793
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100004}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.75
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &100006
 GameObject:
   m_ObjectHideFlags: 0
