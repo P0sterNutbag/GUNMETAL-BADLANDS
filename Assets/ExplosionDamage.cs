@@ -9,8 +9,9 @@ public class ExplosionDamage : MonoBehaviour
 
     private void Start()
     {
-        SphereCollider sphereCollider = GetComponent<SphereCollider>();
-        damageRadius = sphereCollider.radius;
+        //SphereCollider sphereCollider = GetComponent<SphereCollider>();
+        //damageRadius = sphereCollider.radius;
+        //Debug.Log(damage);
     }
 
     private void OnEnable()
@@ -23,7 +24,7 @@ public class ExplosionDamage : MonoBehaviour
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(damage);
-                Debug.Log(damage);
+                //Debug.Log(damage);
             }
         }
     }

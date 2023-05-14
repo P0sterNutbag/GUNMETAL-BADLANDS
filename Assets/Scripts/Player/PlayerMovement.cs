@@ -157,18 +157,4 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }
     }
-
-    void Slide()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit))
-        {
-            float angle = Vector3.Angle(hit.normal, Vector3.up);
-            if (angle > 0 && angle <= maxSlideAngle)
-            {
-                //rb.AddForce(Vector3.down * slideForce, ForceMode.Force);
-                //rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-            }
-        }
-    }
 }

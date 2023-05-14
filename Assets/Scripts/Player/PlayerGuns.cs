@@ -41,7 +41,7 @@ public class PlayerGuns : MonoBehaviour
     private bool fireButtonR;
     private bool isShootingL;
     private bool isShootingR;
-    private Vector3 aimPoint;
+    //private Vector3 aimPoint;
 
     public enum gunType
     { 
@@ -139,11 +139,12 @@ public class PlayerGuns : MonoBehaviour
         // get direction towards camera
         Vector3 aimDir;
         RaycastHit cast;
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out cast, range))
+        if (Physics.Raycast(fpsCam.transform.position + fpsCam.transform.forward*1.25f, fpsCam.transform.forward, out cast, range))
         {
-            aimPoint = cast.point;
+            Vector3 aimPoint = cast.point;
             Vector3 dir = aimPoint - firePoint;
             aimDir = dir.normalized;
+            Debug.Log(cast.collider.gameObject.name);
         }
         else
         {
@@ -180,7 +181,7 @@ public class PlayerGuns : MonoBehaviour
             case gunType.projectile:
                 // Create a new bullet object at the fire point
                 GameObject projectileBullet = Instantiate(bulletPrefab, firePoint, fireRotation);
-
+                projectileBullet.GetComponent<Bullet>().owner = player.gameObject;
                 // Get the rigidbody component of the bullet object and apply a force to it to shoot it
                 Rigidbody rb = projectileBullet.GetComponent<Rigidbody>();
                 rb.AddForce(aimDir * bulletForce, ForceMode.Impulse);
@@ -190,10 +191,12 @@ public class PlayerGuns : MonoBehaviour
                 GameObject missile = Instantiate(missilePrefab, firePoint, fireRotation);
 
                 // set missile target position
-                missile.GetComponent<Missile>().target = aimPoint;
-                missile.GetComponent<Missile>().speed = missileForceStart;
-                missile.GetComponent<Missile>().maxSpeed = missileForceMax;
-                missile.GetComponent<Missile>().explosionDamage = missileDamage;
+                //missile.GetComponent<Missile>().target = aimPoint;
+                Missile script = missile.GetComponent<Missile>();
+                script.speed = missileForceStart;
+                script.maxSpeed = missileForceMax;
+                script.explosionDamage = missileDamage;
+                script.owner = player.gameObject;
 
                 // randomize direction
                 //float randomRange = 10f;
@@ -213,21 +216,4 @@ public class PlayerGuns : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
     }
 
-    /*private IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit)
-    {
-        float time = 0;
-        Vector3 startPosition = trail.transform.position;
-
-        while (time < 1)
-        {
-            trail.transform.position = Vector3.Lerp(startPosition, hit.point, time);
-            time += Time.deltaTime / trail.time;
-
-            yield return null;
-        }
-        //trail.transform.position = hit.point;
-        //Instantiate(ImpactParticalSystem, hit.point, Quaternion.LookRotation(hit.normal));
-
-        Destroy(trail.gameObject, trail.time);
-    }*/
 }

@@ -8,6 +8,7 @@ public class Missile : MonoBehaviour
     public int explosionDamage;
     public Vector3 target;
     public GameObject explosionPrefab;
+    public GameObject owner;
     //public float speed;
 
     private Rigidbody rb;
@@ -31,16 +32,19 @@ public class Missile : MonoBehaviour
         rb.velocity = transform.forward * speed;
 
         // Rotate the missile to look at the target
-        transform.rotation = Quaternion.LookRotation(transform.forward);
+        //transform.rotation = Quaternion.LookRotation(transform.forward);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        // create explosion
-        GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        ExplosionDamage script = explosion.GetComponent<ExplosionDamage>();
-        script.damage = explosionDamage;
+        if (other.gameObject != owner)
+        {
+            // create explosion
+            GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            ExplosionDamage script = explosion.GetComponent<ExplosionDamage>();
+            script.damage = explosionDamage;
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }
