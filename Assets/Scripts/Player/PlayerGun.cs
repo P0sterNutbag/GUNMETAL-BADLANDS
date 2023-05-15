@@ -68,7 +68,8 @@ public class PlayerGun : MonoBehaviour
         // state machine
         if (fireButton && Time.time >= nextTimetoFire)
         {
-
+            if (ammoInClip > 0)
+            {
                 nextTimetoFire = Time.time + 1f / fireRate;
                 if (myFireType == fireType.burst)
                 {
@@ -79,6 +80,11 @@ public class PlayerGun : MonoBehaviour
                     Shoot(myGunType, firePoint.transform.position, firePoint.rotation);
                 }
                 ammoInClip--;
+            }
+            else
+            {
+                Reload();
+            }
 
         }
         // burst fire
@@ -179,6 +185,15 @@ public class PlayerGun : MonoBehaviour
 
     private void Reload() 
     {
-        ammoInClip = clipMax;
+        if (ammo >= clipMax)
+        {
+            ammoInClip = clipMax;
+            ammo -= clipMax;
+        }
+        else if (ammo > 0)
+        {
+            ammoInClip = ammo;
+            ammo = 0;
+        }
     }
 }
