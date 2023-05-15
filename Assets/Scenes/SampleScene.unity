@@ -645,6 +645,44 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3481651933063073341, guid: fc990e429c336aa4ab1ddc16480b3b4c, type: 3}
   m_PrefabInstance: {fileID: 1208150815}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &490302809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7228910734832839480, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
+  m_PrefabInstance: {fileID: 7228910735138522958}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &490302811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490302809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec0cc39edeae2d41a59b5c29bba9802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  range: 100
+  impactForce: 30
+  fireRate: 15
+  bulletForce: 150
+  missileForceStart: 5
+  missileForceMax: 20
+  missileDamage: 5
+  bulletsPerShot: 3
+  bulletsDelay: 0.5
+  firebutton: Fire2
+  fpsCam: {fileID: 1593869739}
+  animator: {fileID: 954515544}
+  bulletPrefab: {fileID: 423717201925621686, guid: 471dd13645a2c2340bf1d68d2f07ea13, type: 3}
+  missilePrefab: {fileID: 8169612496048947510, guid: d21cab4c44493494ab1fb65848f86b62, type: 3}
+  firePoint: {fileID: 1945528656}
+  bulletImpact: {fileID: 0}
+  playerState: {fileID: 3481651933580291220, guid: fc990e429c336aa4ab1ddc16480b3b4c, type: 3}
+  bulletTrail: {fileID: 6670010285891972953, guid: c322a25c57fae38409df09aa6597c73a, type: 3}
+  myGunType: 1
+  myFireType: 0
 --- !u!1 &511585930 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3406645076314846491, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
@@ -915,6 +953,25 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7228910733886199450, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
   m_PrefabInstance: {fileID: 7228910735138522958}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &954515544 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6852555070708962428, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
+  m_PrefabInstance: {fileID: 7228910735138522958}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &954515545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954515543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cfeb5b89a028c742b1eb82d7bd49436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fpsCam: {fileID: 1593869739}
+  rotationSpeed: 5
 --- !u!1 &1070888545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,6 +1389,44 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1434101164 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7228910734435012128, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
+  m_PrefabInstance: {fileID: 7228910735138522958}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1434101166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434101164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec0cc39edeae2d41a59b5c29bba9802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  range: 100
+  impactForce: 30
+  fireRate: 15
+  bulletForce: 150
+  missileForceStart: 5
+  missileForceMax: 20
+  missileDamage: 5
+  bulletsPerShot: 3
+  bulletsDelay: 0.2
+  firebutton: Fire1
+  fpsCam: {fileID: 1593869739}
+  animator: {fileID: 954515544}
+  bulletPrefab: {fileID: 423717201925621686, guid: 471dd13645a2c2340bf1d68d2f07ea13, type: 3}
+  missilePrefab: {fileID: 8169612496048947510, guid: d21cab4c44493494ab1fb65848f86b62, type: 3}
+  firePoint: {fileID: 1208748409}
+  bulletImpact: {fileID: 0}
+  playerState: {fileID: 3481651933580291220, guid: fc990e429c336aa4ab1ddc16480b3b4c, type: 3}
+  bulletTrail: {fileID: 6670010285891972953, guid: c322a25c57fae38409df09aa6597c73a, type: 3}
+  myGunType: 0
+  myFireType: 0
 --- !u!1 &1501252607
 GameObject:
   m_ObjectHideFlags: 0
@@ -2112,5 +2207,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.601
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7228910733886199448, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 750b66644f261fb4fb4618b4797eef8f, type: 3}

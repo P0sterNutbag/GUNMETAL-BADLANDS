@@ -30,8 +30,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7228910734832839481}
   - {fileID: 7228910734435012129}
+  - {fileID: 7228910734832839481}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50,19 +50,32 @@ MonoBehaviour:
   damage: 10
   range: 100
   impactForce: 30
-  fireRate: 15
+  fireRateL: 15
+  fireRateR: 15
   bulletForce: 150
+  missileForceStart: 5
+  missileForceMax: 20
+  missileDamage: 5
   rotationSpeed: 5
-  isHitscanR: 0
-  isHitscanL: 0
+  camZoomAmount: 2
+  camZoomSpd: 0.25
+  bulletsPerShotL: 3
+  bulletsDelayL: 0.5
+  bulletsPerShotR: 3
+  bulletsDelayR: 0.5
   fpsCam: {fileID: 0}
   animator: {fileID: 6852555070708962428}
   bulletPrefab: {fileID: 423717201925621686, guid: 471dd13645a2c2340bf1d68d2f07ea13, type: 3}
+  missilePrefab: {fileID: 0}
   firePointL: {fileID: 7228910735392932536}
   firePointR: {fileID: 7228910734061844565}
   bulletImpact: {fileID: 0}
   playerState: {fileID: 0}
   bulletTrail: {fileID: 6670010285891972953, guid: c322a25c57fae38409df09aa6597c73a, type: 3}
+  gunTypeL: 1
+  gunTypeR: 0
+  fireTypeL: 0
+  fireTypeR: 1
 --- !u!95 &6852555070708962428
 Animator:
   serializedVersion: 5
@@ -146,7 +159,7 @@ Transform:
   m_Children:
   - {fileID: 7228910735392932536}
   m_Father: {fileID: 7228910733886199451}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7228910734435012156
 MeshFilter:
@@ -230,7 +243,7 @@ Transform:
   m_Children:
   - {fileID: 7228910734061844565}
   m_Father: {fileID: 7228910733886199451}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7228910734832839476
 MeshFilter:

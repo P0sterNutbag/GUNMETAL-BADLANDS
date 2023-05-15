@@ -7,9 +7,10 @@ public class MouseLook : MonoBehaviour
 
     public float mouseSensitivity = 200f;
     public bool isHolding = false;
-    private float rotationY = 0f;
     public float defaultFov;
     public bool isZooming = false;
+    public float camZoomAmount = 2f;
+    public float camZoomSpd = 0.25f;
 
     public Camera cam;
     public Transform playerBody;
@@ -63,14 +64,11 @@ public class MouseLook : MonoBehaviour
         }
         if (isZooming)
         {
-            float zoomAmount = gun.GetComponent<PlayerGuns>().camZoomAmount;
-            float zoomSpd = gun.GetComponent<PlayerGuns>().camZoomSpd;
-            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, defaultFov/zoomAmount, zoomSpd);
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, defaultFov/ camZoomAmount, camZoomSpd);
         }
         else 
         {
-            float zoomSpd = gun.GetComponent<PlayerGuns>().camZoomSpd;
-            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, defaultFov, zoomSpd);
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, defaultFov, camZoomSpd);
         }
     }
 }
