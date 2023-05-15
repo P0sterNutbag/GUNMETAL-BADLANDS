@@ -14,6 +14,8 @@ public class PlayerGun : MonoBehaviour
     public int missileDamage = 5;
     public float bulletsPerShot = 3f;
     public float bulletsDelay = 0.5f;
+    public float ammo;
+    public float clipMax;
     public string firebutton;
 
     public Camera fpsCam;
@@ -28,7 +30,9 @@ public class PlayerGun : MonoBehaviour
     private float nextTimetoFire = 0f;
     private float nextTimetoBullet = 0f;
     private float bulletCounter = 0f;
+    private float ammoInClip;
     private bool fireButton;
+    private bool reloadButton;
 
     public enum gunType
     { 
@@ -50,6 +54,7 @@ public class PlayerGun : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
+        ammoInClip = clipMax;
     }
     // Update is called once per frame
     void Update()
@@ -57,19 +62,24 @@ public class PlayerGun : MonoBehaviour
         // inputs
         if (myFireType == fireType.auto) { fireButton = Input.GetButton(firebutton); }
         else { fireButton = Input.GetButtonDown(firebutton); }
+        reloadButton = Input.GetButtonDown("Reload");
+
 
         // state machine
         if (fireButton && Time.time >= nextTimetoFire)
         {
-            nextTimetoFire = Time.time + 1f / fireRate;
-            if (myFireType == fireType.burst)
-            {
-                bulletCounter = 0f;
-            }
-            else 
-            {
-                Shoot(myGunType, firePoint.transform.position, firePoint.rotation);
-            }
+
+                nextTimetoFire = Time.time + 1f / fireRate;
+                if (myFireType == fireType.burst)
+                {
+                    bulletCounter = 0f;
+                }
+                else
+                {
+                    Shoot(myGunType, firePoint.transform.position, firePoint.rotation);
+                }
+                ammoInClip--;
+
         }
         // burst fire
         if (bulletCounter < bulletsPerShot)
@@ -80,6 +90,12 @@ public class PlayerGun : MonoBehaviour
                 bulletCounter++;
                 nextTimetoBullet = Time.time + bulletsDelay;
             }
+        }
+
+        // reload
+        if (reloadButton)
+        {
+            Reload();
         }
     }
 
@@ -159,5 +175,10 @@ public class PlayerGun : MonoBehaviour
                 rb.AddForce(aimDir * missileForceStart, ForceMode.Impulse);
                 break;
         }
+    }
+
+    private void Reload() 
+    {
+        ammoInClip = clipMax;
     }
 }
