@@ -249,6 +249,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3481651933580291219, guid: fc990e429c336aa4ab1ddc16480b3b4c, type: 3}
   m_PrefabInstance: {fileID: 568417401455175013}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &568417401244080738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4013309121174964726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92f658df7ba1ac748a0bd99ff91716e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &568417401244080749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,18 +291,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &568417401244080738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4013309121174964726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92f658df7ba1ac748a0bd99ff91716e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &4013309121689561944 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3481651933063073341, guid: fc990e429c336aa4ab1ddc16480b3b4c, type: 3}
@@ -525,6 +525,7 @@ MonoBehaviour:
   missileDamage: 5
   bulletsPerShot: 3
   bulletsDelay: 0.5
+  ammo: 0
   firebutton: Fire2
   fpsCam: {fileID: 4013309119971460678}
   animator: {fileID: 4370750145230822728}
@@ -592,6 +593,7 @@ MonoBehaviour:
   missileDamage: 5
   bulletsPerShot: 3
   bulletsDelay: 0.2
+  ammo: 0
   firebutton: Fire1
   fpsCam: {fileID: 4013309119971460678}
   animator: {fileID: 4370750145230822728}

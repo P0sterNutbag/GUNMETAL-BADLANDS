@@ -15,7 +15,6 @@ public class PlayerGun : MonoBehaviour
     public float bulletsPerShot = 3f;
     public float bulletsDelay = 0.5f;
     public float ammo;
-    public float clipMax;
     public string firebutton;
 
     public Camera fpsCam;
@@ -30,9 +29,7 @@ public class PlayerGun : MonoBehaviour
     private float nextTimetoFire = 0f;
     private float nextTimetoBullet = 0f;
     private float bulletCounter = 0f;
-    private float ammoInClip;
     private bool fireButton;
-    private bool reloadButton;
 
     public enum gunType
     { 
@@ -54,7 +51,6 @@ public class PlayerGun : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
-        ammoInClip = clipMax;
     }
     // Update is called once per frame
     void Update()
@@ -62,13 +58,12 @@ public class PlayerGun : MonoBehaviour
         // inputs
         if (myFireType == fireType.auto) { fireButton = Input.GetButton(firebutton); }
         else { fireButton = Input.GetButtonDown(firebutton); }
-        reloadButton = Input.GetButtonDown("Reload");
 
 
         // state machine
         if (fireButton && Time.time >= nextTimetoFire)
         {
-            if (ammoInClip > 0)
+            if (ammo > 0)
             {
                 nextTimetoFire = Time.time + 1f / fireRate;
                 if (myFireType == fireType.burst)
@@ -79,11 +74,7 @@ public class PlayerGun : MonoBehaviour
                 {
                     Shoot(myGunType, firePoint.transform.position, firePoint.rotation);
                 }
-                ammoInClip--;
-            }
-            else
-            {
-                Reload();
+                ammo--;
             }
 
         }
@@ -97,18 +88,12 @@ public class PlayerGun : MonoBehaviour
                 nextTimetoBullet = Time.time + bulletsDelay;
             }
         }
-
-        // reload
-        if (reloadButton)
-        {
-            Reload();
-        }
     }
 
     void Shoot(gunType type, Vector3 firePoint, Quaternion fireRotation)
     {
         // animate 
-        animator.SetTrigger("ShootL");
+        animator.SetTrigger("Shoot");
         Debug.Log(type);
 
         // get direction towards camera
@@ -183,7 +168,7 @@ public class PlayerGun : MonoBehaviour
         }
     }
 
-    private void Reload() 
+    /*private void Reload() 
     {
         if (ammo >= clipMax)
         {
@@ -195,5 +180,5 @@ public class PlayerGun : MonoBehaviour
             ammoInClip = ammo;
             ammo = 0;
         }
-    }
+    }*/
 }
