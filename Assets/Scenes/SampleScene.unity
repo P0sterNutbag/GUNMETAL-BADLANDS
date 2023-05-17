@@ -136,9 +136,10 @@ GameObject:
   - component: {fileID: 22594967}
   - component: {fileID: 22594966}
   - component: {fileID: 22594970}
+  - component: {fileID: 22594971}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,6 +235,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+--- !u!54 &22594971
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22594965}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &195012318
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,9 +692,10 @@ GameObject:
   - component: {fileID: 575154814}
   - component: {fileID: 575154813}
   - component: {fileID: 575154812}
+  - component: {fileID: 575154817}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -773,6 +791,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &575154817
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575154811}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,9 +914,10 @@ GameObject:
   - component: {fileID: 1070888548}
   - component: {fileID: 1070888547}
   - component: {fileID: 1070888546}
+  - component: {fileID: 1070888551}
   m_Layer: 0
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -978,6 +1013,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1070888551
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070888545}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &1177330530 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4013309121174964726, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
@@ -996,9 +1047,10 @@ GameObject:
   - component: {fileID: 1289211194}
   - component: {fileID: 1289211193}
   - component: {fileID: 1289211192}
+  - component: {fileID: 1289211197}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1094,6 +1146,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1289211197
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289211191}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &1501252607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,9 +1296,10 @@ GameObject:
   - component: {fileID: 1571610239}
   - component: {fileID: 1571610238}
   - component: {fileID: 1571610237}
+  - component: {fileID: 1571610242}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1326,6 +1395,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1571610242
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571610236}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &1584136315
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,7 +1422,7 @@ GameObject:
   - component: {fileID: 1584136318}
   - component: {fileID: 1584136317}
   - component: {fileID: 1584136316}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1885,6 +1970,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 568417400515464833}
+    - target: {fileID: 568417400162706209, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+      propertyPath: bulletForce
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 568417401366555604, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
       propertyPath: ammo
       value: 10
@@ -1977,6 +2066,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4464036748135494412, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
+      propertyPath: health
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3406645076314846488, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
       propertyPath: ray
       value: 
@@ -1996,6 +2089,14 @@ PrefabInstance:
     - target: {fileID: 3406645076314846491, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406645076314846491, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406645076314846494, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3406645076314846946, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
       propertyPath: m_RootOrder
