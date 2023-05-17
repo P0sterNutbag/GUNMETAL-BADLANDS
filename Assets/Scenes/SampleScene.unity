@@ -1881,6 +1881,10 @@ PrefabInstance:
       propertyPath: clipMax
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 568417400162706209, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 568417400515464833}
     - target: {fileID: 568417401366555604, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
       propertyPath: ammo
       value: 10
@@ -1890,14 +1894,31 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 568417401366555604, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 568417400515464837}
+    - target: {fileID: 568417401366555604, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+      propertyPath: myGunType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 568417401366555604, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
       propertyPath: firebutton
       value: Fire1
+      objectReference: {fileID: 0}
+    - target: {fileID: 568417401366555604, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+      propertyPath: chargeGunTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 568417401366555604, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+      propertyPath: chargeGunTimerMax
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4013309121174964721, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
       propertyPath: boostbar
       value: 
       objectReference: {fileID: 332021638}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4370750145230822728, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
 --- !u!1 &568417400515464827 stripped
 GameObject:
