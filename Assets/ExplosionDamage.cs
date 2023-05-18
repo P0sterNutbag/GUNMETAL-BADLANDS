@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ExplosionDamage : MonoBehaviour
 {
-    public int damage;
+    public float damage;
     public float damageRadius;
 
     private void Start()

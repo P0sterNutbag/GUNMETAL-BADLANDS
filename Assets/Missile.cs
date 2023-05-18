@@ -5,7 +5,7 @@ public class Missile : MonoBehaviour
     public float maxSpeed;
     public float speed;
     public float lifetime;
-    public int explosionDamage;
+    public float explosionDamage;
     public Vector3 target;
     public GameObject explosionPrefab;
     public GameObject owner;

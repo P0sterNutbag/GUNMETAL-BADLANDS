@@ -4,20 +4,47 @@ using UnityEngine;
 
 public class PlayerGun : MonoBehaviour
 {
+    public enum gunType
+    {
+        hitscan,
+        projectile,
+        missile,
+        charge
+    }
+    [Header("Gun Type")]
+    public gunType myGunType = gunType.projectile;
+    public enum fireType
+    {
+        single,
+        burst,
+        auto
+    }
+    public fireType myFireType = fireType.single;
+
+    [Header("Generals Values")]
     public float damage = 10f;
     public float range = 100f;
+    public float aimVariance = 1f;
+    public float bulletForce = 150f;
     public float impactForce = 30f;
     public float fireRate = 15f;
-    public float bulletForce = 150f;
+    public float ammo;
+
+    [Header("Missile Values")]
     public float missileForceStart = 5f;
     public float missileForceMax = 20f;
-    public int missileDamage = 5;
+
+    [Header("Burstfire Values")]
     public float bulletsPerShot = 3f;
     public float bulletsDelay = 0.5f;
-    public float ammo;
-    public string firebutton;
-    public float chargeTimerMax;
 
+    [Header("Chargeshot Values")]
+    public float chargeTimerMax;
+    
+    [Header("Controls")]
+    public string firebutton;
+
+    [Header("References")]
     public Camera fpsCam;
     public Animator animator;
     public GameObject bulletPrefab;
@@ -28,28 +55,13 @@ public class PlayerGun : MonoBehaviour
     private Transform player;
     public TrailRenderer bulletTrail;
     public GameObject chargebar;
+
     private float nextTimetoFire = 0f;
     private float nextTimetoBullet = 0f;
     private float bulletCounter = 0f;
     private float chargeTimer = 0;
     private bool fireButton;
 
-    public enum gunType
-    { 
-        hitscan,
-        projectile,
-        missile,
-        charge
-    }
-    public gunType myGunType = gunType.projectile;
-
-    public enum fireType
-    {
-        single,
-        burst,
-        auto
-    }
-    public fireType myFireType = fireType.single;
 
     // Start is called before the first frame update
     void Start()
@@ -134,7 +146,9 @@ public class PlayerGun : MonoBehaviour
         {
             aimDir = transform.forward;
         }
-
+        // add aim variance
+        Quaternion randomRotation = Quaternion.Euler(Random.Range(-aimVariance, aimVariance), Random.Range(-aimVariance, aimVariance), 0f);
+        aimDir = randomRotation * aimDir;
         switch (type)
         {
             case gunType.hitscan:
@@ -179,7 +193,7 @@ public class PlayerGun : MonoBehaviour
                 Missile script = missile.GetComponent<Missile>();
                 script.speed = missileForceStart;
                 script.maxSpeed = missileForceMax;
-                script.explosionDamage = missileDamage;
+                script.explosionDamage = damage;
                 script.owner = player.gameObject;
 
                 // randomize direction
