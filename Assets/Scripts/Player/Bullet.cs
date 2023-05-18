@@ -3,7 +3,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float lifetime = 2f;
-    public int damage = 10;
+    public float damage;
     public GameObject owner;
 
     private Vector3 positionLast;

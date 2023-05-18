@@ -180,6 +180,7 @@ public class PlayerGun : MonoBehaviour
                 // Create a new bullet object at the fire point
                 GameObject projectileBullet = Instantiate(bulletPrefab, firePoint, fireRotation);
                 projectileBullet.GetComponent<Bullet>().owner = player.gameObject;
+                projectileBullet.GetComponent<Bullet>().damage = damage;
                 // Get the rigidbody component of the bullet object and apply a force to it to shoot it
                 Rigidbody rb = projectileBullet.GetComponent<Rigidbody>();
                 rb.AddForce(aimDir * bulletForce, ForceMode.Impulse);
