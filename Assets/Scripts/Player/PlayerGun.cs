@@ -16,6 +16,7 @@ public class PlayerGun : MonoBehaviour
     public float bulletsDelay = 0.5f;
     public float ammo;
     public string firebutton;
+    public float chargeTimerMax;
 
     public Camera fpsCam;
     public Animator animator;
@@ -26,16 +27,19 @@ public class PlayerGun : MonoBehaviour
     public PlayerMovement playerState;
     private Transform player;
     public TrailRenderer bulletTrail;
+    public GameObject chargebar;
     private float nextTimetoFire = 0f;
     private float nextTimetoBullet = 0f;
     private float bulletCounter = 0f;
+    private float chargeTimer = 0;
     private bool fireButton;
 
     public enum gunType
     { 
         hitscan,
         projectile,
-        missile
+        missile,
+        charge
     }
     public gunType myGunType = gunType.projectile;
 
@@ -51,32 +55,50 @@ public class PlayerGun : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
+        chargeTimer = chargeTimerMax;
     }
     // Update is called once per frame
     void Update()
     {
         // inputs
-        if (myFireType == fireType.auto) { fireButton = Input.GetButton(firebutton); }
+        if (myFireType == fireType.auto || myGunType == gunType.charge) { fireButton = Input.GetButton(firebutton); }
         else { fireButton = Input.GetButtonDown(firebutton); }
-
 
         // state machine
         if (fireButton && Time.time >= nextTimetoFire)
         {
             if (ammo > 0)
             {
-                nextTimetoFire = Time.time + 1f / fireRate;
-                if (myFireType == fireType.burst)
+                if (myGunType == gunType.charge)
                 {
-                    bulletCounter = 0f;
+                    if (chargeTimer >= chargeTimerMax)
+                    {
+                        Shoot(myGunType, firePoint.transform.position, firePoint.rotation);
+                        chargeTimer = 0;
+                    }
+                    else
+                    {
+                        chargeTimer += Time.deltaTime;
+                        chargebar.GetComponent<Healthbar>().SetHealth(chargeTimer, chargeTimerMax);
+                    }
                 }
                 else
-                {
-                    Shoot(myGunType, firePoint.transform.position, firePoint.rotation);
+                { 
+                    if (myFireType == fireType.burst)
+                    {
+                        bulletCounter = 0f;
+                    }
+                    else
+                    {
+                        Shoot(myGunType, firePoint.transform.position, firePoint.rotation);
+                    }
                 }
-                ammo--;
             }
-
+        }
+        else if (myGunType == gunType.charge)
+        {
+            chargeTimer = 0;
+            chargebar.GetComponent<Healthbar>().SetHealth(chargeTimer, chargeTimerMax);
         }
         // burst fire
         if (bulletCounter < bulletsPerShot)
@@ -92,6 +114,9 @@ public class PlayerGun : MonoBehaviour
 
     void Shoot(gunType type, Vector3 firePoint, Quaternion fireRotation)
     {
+        ammo--;
+        nextTimetoFire = Time.time + 1f / fireRate;
+
         // animate 
         animator.SetTrigger("Shoot");
         Debug.Log(type);
@@ -164,6 +189,32 @@ public class PlayerGun : MonoBehaviour
                 // Get the rigidbody component of the bullet object and apply a force to it to shoot it
                 rb = missile.GetComponent<Rigidbody>();
                 rb.AddForce(aimDir * missileForceStart, ForceMode.Impulse);
+                break;
+            case gunType.charge:
+                // make bullet trail
+                bullet = Instantiate(bulletTrail, firePoint, Quaternion.identity);
+                bullet.startWidth = 1;
+                bullet.endWidth = 1;
+                bullet.AddPosition(firePoint);
+                {
+                    bullet.transform.position = firePoint + (aimDir * 200);
+                }
+
+                if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+                {
+                    EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
+                    Vector3 hitPosition = hit.point;
+
+                    if (target != null)
+                    {
+                        target.TakeDamage(damage);
+                    }
+
+                    if (hit.rigidbody != null)
+                    {
+                        hit.rigidbody.AddForce(-hit.normal * impactForce);
+                    }
+                }
                 break;
         }
     }

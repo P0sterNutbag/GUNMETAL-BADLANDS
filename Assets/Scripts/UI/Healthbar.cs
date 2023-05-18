@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour
 {
-
     public Slider slider;
-    public void SetHealth(float health, float maxHealth)
+
+    public void SetHealth(float val, float maxVal)
     {
-        float barVal = health / maxHealth;
+        float barVal = val / maxVal;
         slider.value = barVal;
     }
 
