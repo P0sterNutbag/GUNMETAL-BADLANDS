@@ -29,8 +29,8 @@ public class PlayerMovement : MonoBehaviour
     public bool isHolding = false;
     public bool isTankControls = false;
     public GameObject boostbar;
-    private float moveDirection = 0;
-    private Quaternion moveRotation;
+    public float moveDirection = 0;
+    public Quaternion moveRotation;
     private Vector3 move;
     private float currentSpeed = 0f;
 
