@@ -2500,6 +2500,14 @@ PrefabInstance:
       propertyPath: boostbar
       value: 
       objectReference: {fileID: 332021638}
+    - target: {fileID: 4013309121174964721, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+      propertyPath: isTankControls
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013309121174964721, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+      propertyPath: accelerationSpd
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4370750145230822728, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
