@@ -336,6 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 195012319}
   - component: {fileID: 195012321}
+  - component: {fileID: 195012322}
   m_Layer: 5
   m_Name: Crosshair
   m_TagString: Untagged
@@ -375,6 +376,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 195012318}
   m_CullTransparentMesh: 1
+--- !u!114 &195012322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195012318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4be829546ebe63459bf37e353c362c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gun: {fileID: 568417400515464835}
+  barTop: {fileID: 1235904505}
+  barRight: {fileID: 971529195}
+  barBottom: {fileID: 912444341}
+  barLeft: {fileID: 1706799552}
 --- !u!1 &201080567
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,7 +582,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -27.700012}
+  m_AnchoredPosition: {x: 0, y: -27.699951}
   m_SizeDelta: {x: -1100.854, y: -502.1609}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &213517705
@@ -1182,9 +1200,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -130.3}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 27.443, y: 160}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &912444342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1258,9 +1276,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 130, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 27.443, y: 160}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &971529196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1478,9 +1496,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00073826, y: 130.404}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 27.443, y: 160}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1235904506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2180,7 +2198,7 @@ GameObject:
   - component: {fileID: 1584136318}
   - component: {fileID: 1584136317}
   - component: {fileID: 1584136316}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2282,9 +2300,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -270}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -129.9, y: -0.000097655}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 27.443, y: 160}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1706799553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2904,6 +2922,10 @@ PrefabInstance:
       propertyPath: bulletForce
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 568417400162706209, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+      propertyPath: aimVarianceCooldown
+      value: 1.25
+      objectReference: {fileID: 0}
     - target: {fileID: 568417401366555604, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
       propertyPath: ammo
       value: 10
@@ -2933,6 +2955,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 568417401366555604, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+      propertyPath: aimVarianceMin
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 568417401366555604, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
       propertyPath: chargeGunTimer
       value: 1
       objectReference: {fileID: 0}
@@ -2943,6 +2969,10 @@ PrefabInstance:
     - target: {fileID: 568417401366555604, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
       propertyPath: chargeGunTimerMax
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 568417401366555604, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+      propertyPath: aimVarianceCooldown
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4013309119971460672, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
       propertyPath: bobAmplitude
@@ -2964,6 +2994,18 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 31
       objectReference: {fileID: 0}
+    - target: {fileID: 4013309121174964720, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013309121174964720, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013309121174964720, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+      propertyPath: m_StepOffset
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4013309121174964721, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
       propertyPath: boostbar
       value: 
@@ -2974,7 +3016,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4013309121174964721, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
       propertyPath: accelerationSpd
-      value: 4
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013309121174964721, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+      propertyPath: boostAcceleration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013309121174964723, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.114
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4370750145230822728, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
@@ -3009,6 +3059,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &568417400515464835 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 568417400162706209, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+  m_PrefabInstance: {fileID: 568417400515464826}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568417400515464827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec0cc39edeae2d41a59b5c29bba9802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &568417400515464837
 Animator:
   serializedVersion: 5

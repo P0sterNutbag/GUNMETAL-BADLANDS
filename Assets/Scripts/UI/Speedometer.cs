@@ -16,7 +16,7 @@ public class Speedometer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float dir = -player.currentSpeed * 20f;
+        float dir = -player.currentSpeed * 15f;
         arrow.rotation = Quaternion.AngleAxis(dir, Vector3.forward);
     }
 }

@@ -55,7 +55,7 @@ public class MouseLook : MonoBehaviour
                 playerBody.localRotation = Quaternion.Euler(0f, yRotation, 0f);
 
                 // headbob
-                if (player.currentSpeed != 0)
+                if (player.currentSpeed != 0 && player.isGrounded)
                 {
                     float speedRatio = player.currentSpeed / player.speed;
                     float riseSpeed = bobRiseSpeed * speedRatio;
@@ -67,6 +67,10 @@ public class MouseLook : MonoBehaviour
                     timer += frequency * Time.deltaTime;
                     float bobSpeed = verticalOffset > 0f ? riseSpeed : fallSpeed;
                     timer += bobSpeed * Time.deltaTime;
+                }
+                else if (transform.localPosition != originalPosition)
+                {
+                    transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition, 0.2f);
                 }
 
                 break;

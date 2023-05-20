@@ -24,7 +24,10 @@ public class PlayerGun : MonoBehaviour
     [Header("Generals Values")]
     public float damage = 10f;
     public float range = 100f;
-    public float aimVariance = 1f;
+    public float aimVarianceMin = 0.5f;
+    public float aimVarianceMax = 3f;
+    public float aimVarianceSpeed = 1f;
+    public float aimVarianceCooldown = 1.25f;
     public float bulletForce = 150f;
     public float impactForce = 30f;
     public float fireRate = 15f;
@@ -56,11 +59,14 @@ public class PlayerGun : MonoBehaviour
     public TrailRenderer bulletTrail;
     public GameObject chargebar;
 
+    [Header("Private")]
     private float nextTimetoFire = 0f;
     private float nextTimetoBullet = 0f;
     private float bulletCounter = 0f;
     private float chargeTimer = 0;
+    public float aimVariance;
     private bool fireButton;
+    private bool fireButtonDown;
 
 
     // Start is called before the first frame update
@@ -68,6 +74,7 @@ public class PlayerGun : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").transform;
         chargeTimer = chargeTimerMax;
+        aimVariance = aimVarianceMin;
     }
     // Update is called once per frame
     void Update()
@@ -75,8 +82,9 @@ public class PlayerGun : MonoBehaviour
         // inputs
         if (myFireType == fireType.auto || myGunType == gunType.charge) { fireButton = Input.GetButton(firebutton); }
         else { fireButton = Input.GetButtonDown(firebutton); }
+        fireButtonDown = Input.GetButton(firebutton);
 
-        // state machine
+        // shoot
         if (fireButton && Time.time >= nextTimetoFire)
         {
             if (ammo > 0)
@@ -122,6 +130,19 @@ public class PlayerGun : MonoBehaviour
                 nextTimetoBullet = Time.time + bulletsDelay;
             }
         }
+
+        // aim variance
+        if (fireButtonDown)
+        {
+            if (aimVariance < aimVarianceMax)
+            {
+                aimVariance += aimVarianceSpeed * Time.deltaTime;
+            }
+        } else if (aimVariance > aimVarianceMin)
+        {
+            aimVariance = Mathf.Lerp(aimVariance, aimVarianceMin, aimVarianceCooldown * Time.deltaTime);
+        }
+
     }
 
     void Shoot(gunType type, Vector3 firePoint, Quaternion fireRotation)

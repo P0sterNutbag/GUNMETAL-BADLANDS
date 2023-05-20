@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float maxSlideAngle = 90f;
     public float turnSpeedTank = 180f; // for tank controls
     public float groundDistance = 0.4f;
-    public float boostSpeed = 0f;
+    public float boostSpeedMax = 20f;
     public float boostAcceleration = 0.02f;
     public float boostMax = 12f;
     public float boostTime = 60f;
@@ -32,8 +32,9 @@ public class PlayerMovement : MonoBehaviour
     public Quaternion moveRotation;
     private Vector3 move;
     [HideInInspector]
-    public float moveDirection = 0;
+    public float moveDirection = 0f;
     public float currentSpeed = 0f;
+    public float boostSpeed = 0f;
 
     private bool isBoosting = false;
     private bool isBoostVertical = false;
@@ -47,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     Vector3 velocity;
-    bool isGrounded;
+    public bool isGrounded;
 
     // Update is called once per frame
     void Update()
@@ -70,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
                 // determine boost direction
                 if (Input.GetKeyDown("left shift"))
                 {
-                    if ((horizontal == 0 && vertical == 0)) //|| (!isGrounded))
+                    if ((horizontal == 0 && vertical == 0) || isTankControls) //|| (!isGrounded))
                     {
                         isBoostVertical = true;
                     }
@@ -82,7 +83,10 @@ public class PlayerMovement : MonoBehaviour
                 // boost
                 if (Input.GetKey("left shift") && boostTime > 0)
                 {
-                    boostSpeed += boostAcceleration;
+                    if (boostSpeed < boostSpeedMax)
+                        {
+                        boostSpeed += boostAcceleration;
+                    }
                     isBoosting = true;
                     boostTime -= Time.deltaTime;
                     if (boostTime <= 0)
@@ -121,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
                     moveDirection += horizontal * turnSpeedTank * Time.deltaTime;
                     moveRotation = Quaternion.AngleAxis(moveDirection, Vector3.up);
                     Vector3 movementVector = moveRotation * Vector3.forward * currentSpeed * Time.deltaTime;
+                    if (isGrounded && !isBoosting) { movementVector.y = -4.5f; } // get rid of bumps down slopes
                     controller.Move(movementVector);
                 }
                 else 
@@ -150,6 +155,19 @@ public class PlayerMovement : MonoBehaviour
                 else
                 {
                     velocity.y = 0;
+                }
+
+                // brake
+                if (isTankControls && Input.GetButton("Brake"))
+                {
+                    if (currentSpeed > 0)
+                    {
+                        currentSpeed -= accelerationSpd * Time.deltaTime;
+                    }
+                    else if (currentSpeed < 0)
+                    {
+                        currentSpeed += accelerationSpd * Time.deltaTime;
+                    }
                 }
 
                 controller.Move(velocity * Time.deltaTime);
