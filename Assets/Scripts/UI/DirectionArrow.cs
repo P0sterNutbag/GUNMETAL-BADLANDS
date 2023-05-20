@@ -12,7 +12,7 @@ public class DirectionArrow : MonoBehaviour
     void Update()
     {
         float camDir = fpsCam.transform.eulerAngles.y;
-        myTransform.rotation = Quaternion.AngleAxis(player.moveDirection - camDir, Vector3.up);
-        Debug.Log(camDir - player.moveDirection);
+        float playerDir = player.moveDirection; //* (Mathf.Abs(player.currentSpeed));
+        myTransform.rotation = Quaternion.AngleAxis(playerDir - camDir, Vector3.up);
     }
 }

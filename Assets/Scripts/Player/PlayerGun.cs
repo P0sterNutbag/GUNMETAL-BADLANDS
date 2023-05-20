@@ -131,7 +131,6 @@ public class PlayerGun : MonoBehaviour
 
         // animate 
         animator.SetTrigger("Shoot");
-        Debug.Log(type);
 
         // get direction towards camera
         Vector3 aimDir;

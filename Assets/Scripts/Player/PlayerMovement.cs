@@ -29,10 +29,11 @@ public class PlayerMovement : MonoBehaviour
     public bool isHolding = false;
     public bool isTankControls = false;
     public GameObject boostbar;
-    public float moveDirection = 0;
     public Quaternion moveRotation;
     private Vector3 move;
-    private float currentSpeed = 0f;
+    [HideInInspector]
+    public float moveDirection = 0;
+    public float currentSpeed = 0f;
 
     private bool isBoosting = false;
     private bool isBoostVertical = false;
@@ -111,13 +112,9 @@ public class PlayerMovement : MonoBehaviour
                 if (isTankControls)
                 {
                     // determine speed
-                    if (vertical > 0)
+                    if (vertical != 0)
                     {
-                        currentSpeed += accelerationSpd * Time.deltaTime;
-                    }
-                    else if (vertical < 0)
-                    {
-                        currentSpeed -= accelerationSpd * Time.deltaTime;
+                        currentSpeed += accelerationSpd * vertical * Time.deltaTime;
                     }
                     currentSpeed = Mathf.Clamp(currentSpeed, -speed, speed);
                     // determine direction
