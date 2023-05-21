@@ -43,11 +43,6 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
-        // we could make it check every second if we want more stalling;
-
-        CheckForChangeInState();
         //print(currState);
 
         if (currState == state.patrol)
@@ -68,22 +63,25 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    void CheckForChangeInState()
+    bool CheckForChangeInState()
     {
-        if (Vector3.Distance(targetPlayer.transform.position, transform.position) <= rangeToAttack || hasStrafePosition)
+        print(currState);
+        if (Vector3.Distance(targetPlayer.transform.position, transform.position) <= rangeToAttack && currState != state.attack)
         {
             currState = state.attack;
         }
-        else if (Vector3.Distance(targetPlayer.transform.position, transform.position) <= rangeToChase)
+        else if (Vector3.Distance(targetPlayer.transform.position, transform.position) <= rangeToChase && currState != state.chase)
         {
             hasStrafePosition = false;
             currState = state.chase;
         }
-        else
+        else if (currState != state.patrol)
         {
             hasStrafePosition = false;
             currState = state.patrol;
         }
+
+        return false;
     }
 
     void ShootPlayer()
@@ -115,6 +113,10 @@ public class EnemyAI : MonoBehaviour
             }
             else
             {
+                if (!CheckForChangeInState())
+                {
+                    return;
+                }
                 GetStrafePosition();
                 hasStrafePosition = true;
                 print(strafePosition);
@@ -157,12 +159,14 @@ public class EnemyAI : MonoBehaviour
     {
         // Do nothing right now, go back and forth from random spots???
         //navMeshAgent.destination = transform.position;
+        CheckForChangeInState();
     }
 
     void Chace()
     {
         // Move the enemy towards the target
         navMeshAgent.SetDestination(targetPlayer.transform.position);
+        CheckForChangeInState();
         //transform.LookAt(targetPlayer.transform);
     }
 
