@@ -63,26 +63,29 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    bool CheckForChangeInState()
+    /*bool CheckForChangeInState()
     {
         print(currState);
         if (Vector3.Distance(targetPlayer.transform.position, transform.position) <= rangeToAttack && currState != state.attack)
         {
             currState = state.attack;
+            return true;
         }
         else if (Vector3.Distance(targetPlayer.transform.position, transform.position) <= rangeToChase && currState != state.chase)
         {
             hasStrafePosition = false;
             currState = state.chase;
+            return true;
         }
         else if (currState != state.patrol)
         {
             hasStrafePosition = false;
             currState = state.patrol;
+
         }
 
         return false;
-    }
+    }*/
 
     void ShootPlayer()
     {
@@ -97,9 +100,11 @@ public class EnemyAI : MonoBehaviour
         //print(hasStrafePosition);
         //print("slay");
 
-        if (Vector3.Distance(transform.position, strafePosition) > 3f && hasStrafePosition)
+        if (Vector3.Distance(transform.position, strafePosition) > 1f && hasStrafePosition)
         {
+            //print("here");
             navMeshAgent.SetDestination(strafePosition);
+            //transform.LookAt(strafePosition);
             //navMeshAgent.destination = strafePosition; 
             //transform.LookAt(targetPlayer.transform);
         }
@@ -110,13 +115,11 @@ public class EnemyAI : MonoBehaviour
             if (Vector3.Distance(targetPlayer.transform.position, transform.position) > rangeToAttack)
             {
                 hasStrafePosition = false;
+                //currState = state.chase;
+                print("chase");
             }
             else
             {
-                if (!CheckForChangeInState())
-                {
-                    return;
-                }
                 GetStrafePosition();
                 hasStrafePosition = true;
                 print(strafePosition);
@@ -144,7 +147,7 @@ public class EnemyAI : MonoBehaviour
             
             Debug.DrawRay(rayToShoot, rayTransform.right * hit.distance, Color.yellow);
             Vector3 hitPoint = hit.point;
-            hitPoint.y = hit.point.y;
+            hitPoint.y = hit.point.y + 1;
             strafePosition = hitPoint;
         }
         else
@@ -157,17 +160,33 @@ public class EnemyAI : MonoBehaviour
 
     void Patrol()
     {
+        if (Vector3.Distance(targetPlayer.transform.position, transform.position) <= rangeToChase)
+        {
+            hasStrafePosition = false;
+            currState = state.chase;
+            print("chase");
+        }
+
         // Do nothing right now, go back and forth from random spots???
         //navMeshAgent.destination = transform.position;
-        CheckForChangeInState();
+        //CheckForChangeInState();
     }
 
     void Chace()
     {
         // Move the enemy towards the target
+
         navMeshAgent.SetDestination(targetPlayer.transform.position);
-        CheckForChangeInState();
-        //transform.LookAt(targetPlayer.transform);
+
+        if (Vector3.Distance(targetPlayer.transform.position, transform.position) <= rangeToAttack)
+        {
+            print("attack");
+            currState = state.attack;
+        }
+
+
+        //CheckForChangeInState();
+        transform.LookAt(targetPlayer.transform.position);
     }
 
     void RotateTowardsTarget()
