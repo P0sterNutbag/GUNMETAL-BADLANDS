@@ -13,6 +13,9 @@ public class EnemyAI : MonoBehaviour
     public float rangeToAttack;
     public float rangeToChase;
     public GameObject ray;
+    public float minRayDistince;
+    public float maxRayDistince;
+    public float rangeToChaseAgain;
 
     enum state { chase, attack, patrol};
 
@@ -98,7 +101,31 @@ public class EnemyAI : MonoBehaviour
         //ShootPlayer();
 
         //print(hasStrafePosition);
-        //print("slay");
+
+        //float randFloat = Random.Range(minRayDistince, maxRayDistince + 1);
+        Vector3 rayToShoot = ray.transform.position;
+
+        ray.transform.Rotate(0, 0, randFloat * randInt, Space.Self);
+
+        Transform rayTransform = ray.transform;
+        RaycastHit hit;
+
+        if (Physics.Raycast(rayToShoot, rayTransform.up, out hit, 30f, groundLayerMask))
+        {
+
+            Debug.DrawRay(rayToShoot, rayTransform.up * hit.distance, Color.yellow);
+           /* Vector3 hitPoint = hit.point;
+            hitPoint.y = hit.point.y + 1;
+            strafePosition = hitPoint;*/
+        }
+        else
+        {
+            Debug.DrawRay(rayToShoot, rayTransform.up * 1000, Color.green);
+        }
+
+        randInt *= -1;
+        ray.transform.Rotate(0, 0, randFloat * randInt, Space.Self);
+        randInt *= -1;
 
         if (Vector3.Distance(transform.position, strafePosition) > 1f && hasStrafePosition)
         {
@@ -112,17 +139,16 @@ public class EnemyAI : MonoBehaviour
         {
             // Shoot from the ray on top of the enemy????
 
-            if (Vector3.Distance(targetPlayer.transform.position, transform.position) > rangeToAttack)
+            if (Vector3.Distance(targetPlayer.transform.position, transform.position) > rangeToAttack + rangeToChaseAgain)
             {
                 hasStrafePosition = false;
-                //currState = state.chase;
-                print("chase");
+                currState = state.chase;
+                //print("chase");
             }
             else
             {
                 GetStrafePosition();
                 hasStrafePosition = true;
-                print(strafePosition);
             }
             //navMeshAgent.ResetPath();
             /*int x = Random.Range(-10, 10);
@@ -131,31 +157,43 @@ public class EnemyAI : MonoBehaviour
             strafePosition.x = transform.position.x + x;
             strafePosition.z = transform.position.z + z;*/
 
-        }
+        }   
     }
 
+    int randInt;
+    float randFloat;
     void GetStrafePosition()
     {
+        randInt = 0;
+
+        while(randInt == 0)
+        {
+            randInt = Random.Range(-1, 2);
+        }
+
+        randFloat = Random.Range(minRayDistince, maxRayDistince + 1);
         Vector3 rayToShoot = ray.transform.position;
-        ray.transform.Rotate(0, 0, -45, Space.Self);
+        ray.transform.Rotate(0, 0, randFloat * randInt, Space.Self);
 
         Transform rayTransform = ray.transform;
         RaycastHit hit;
 
-        if (Physics.Raycast(rayToShoot, rayTransform.right, out hit, 30f, groundLayerMask))
+        if (Physics.Raycast(rayToShoot, rayTransform.up, out hit, 30f, groundLayerMask))
         {
             
-            Debug.DrawRay(rayToShoot, rayTransform.right * hit.distance, Color.yellow);
+            Debug.DrawRay(rayToShoot, rayTransform.up * hit.distance, Color.yellow);
             Vector3 hitPoint = hit.point;
             hitPoint.y = hit.point.y + 1;
             strafePosition = hitPoint;
         }
         else
         {
-            Debug.DrawRay(rayToShoot, rayTransform.right * 1000, Color.green);
+            Debug.DrawRay(rayToShoot, rayTransform.up * 1000, Color.green);
         }
 
-        ray.transform.Rotate(0, 0, 45, Space.Self);
+        randInt *= -1;
+        ray.transform.Rotate(0, 0, randFloat * randInt, Space.Self);
+        randInt *= -1;
     }
 
     void Patrol()
@@ -164,7 +202,7 @@ public class EnemyAI : MonoBehaviour
         {
             hasStrafePosition = false;
             currState = state.chase;
-            print("chase");
+            //print("chase");
         }
 
         // Do nothing right now, go back and forth from random spots???
@@ -180,7 +218,7 @@ public class EnemyAI : MonoBehaviour
 
         if (Vector3.Distance(targetPlayer.transform.position, transform.position) <= rangeToAttack)
         {
-            print("attack");
+            //print("attack");
             currState = state.attack;
         }
 
