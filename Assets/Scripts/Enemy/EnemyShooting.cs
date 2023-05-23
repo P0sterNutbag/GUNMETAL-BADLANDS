@@ -1,0 +1,35 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyShooting : MonoBehaviour
+{
+    public GameObject bulletPrefab;
+
+    public void ShootPlayer(GameObject targetPlayer)
+    {
+        print("Shoot");
+        CalcWhereToShoot();
+        ShootProjectile(targetPlayer);
+        // Steal code from player, calc how to hit enemy
+    }
+
+    private Vector3 CalcWhereToShoot()
+    {
+
+        return new Vector3(0,0,0);
+    }
+
+    private void ShootProjectile(GameObject targetPlayer)
+    {
+
+        Vector3 towardsPlayer = targetPlayer.transform.position - transform.position;
+        // Create a new bullet object at the fire point
+        GameObject projectileBullet = Instantiate(bulletPrefab, transform.position + (towardsPlayer * 2), transform.rotation);
+        //projectileBullet.GetComponent<Bullet>().owner = player.gameObject;
+        //projectileBullet.GetComponent<Bullet>().damage = damage;
+        // Get the rigidbody component of the bullet object and apply a force to it to shoot it
+        Rigidbody rb = projectileBullet.GetComponent<Rigidbody>();
+        rb.AddForce((towardsPlayer) * 2, ForceMode.Impulse);
+    }
+}

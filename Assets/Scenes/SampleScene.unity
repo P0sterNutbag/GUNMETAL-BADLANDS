@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.33855477, g: 0.4759735, b: 0.73462534, a: 1}
+  m_IndirectSpecularColor: {r: 0.33853605, g: 0.47614282, b: 0.73460025, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3110,6 +3110,10 @@ PrefabInstance:
       propertyPath: lootToSpawn
       value: 
       objectReference: {fileID: 2099640360297767463, guid: 0f042b19cb0c4e44ba03a86071b09ac9, type: 3}
+    - target: {fileID: 295459798562777337, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 4907828363154093099, guid: e60ee302f06ca0d4baeeb24349595d04, type: 3}
     - target: {fileID: 381950344275548699, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0

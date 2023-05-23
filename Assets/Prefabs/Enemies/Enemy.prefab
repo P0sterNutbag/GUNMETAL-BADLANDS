@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3582733699616034542}
   - component: {fileID: 3406645076314846488}
   - component: {fileID: -4464036748135494412}
+  - component: {fileID: 295459798562777337}
   - component: {fileID: 5276340787324887001}
   m_Layer: 0
   m_Name: Enemy
@@ -114,13 +115,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPlayer: {fileID: 0}
-  speed: 3
-  rangeToAttack: 0
-  rangeToChase: 0
   ray: {fileID: 6003369926829093501}
   minRayDistince: 0
   maxRayDistince: 0
+  speed: 3
+  rangeToAttack: 0
+  rangeToChase: 0
   rangeToChaseAgain: 0
+  enemyShooting: {fileID: 0}
 --- !u!114 &-4464036748135494412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +137,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 40
   lootToSpawn: {fileID: 5247104914552844223, guid: 0f042b19cb0c4e44ba03a86071b09ac9, type: 3}
+--- !u!114 &295459798562777337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3406645076314846491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fd4b10954adb6f4091b7ee114a2b0d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 423717201925621686, guid: 471dd13645a2c2340bf1d68d2f07ea13, type: 3}
+  firePoint: {fileID: 0}
 --- !u!195 &5276340787324887001
 NavMeshAgent:
   m_ObjectHideFlags: 0

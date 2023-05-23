@@ -18,14 +18,12 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         SpawnLoot();
-        print("Dead");
         Destroy(gameObject);
     }
 
     void SpawnLoot()
     {
         GameObject loot = Instantiate(lootToSpawn);
-        print(transform.position);
         loot.transform.position = transform.position;
     }
 }
