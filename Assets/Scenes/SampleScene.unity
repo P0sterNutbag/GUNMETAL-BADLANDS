@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  lootToSpawn: {fileID: 0}
 --- !u!54 &22594971
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -782,7 +783,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -524.95807, y: -39.5748}
+  m_AnchoredPosition: {x: -524.958, y: -39.5748}
   m_SizeDelta: {x: -691.14954, y: -518.9158}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &354754049
@@ -977,6 +978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  lootToSpawn: {fileID: 0}
 --- !u!65 &575154813
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1351,6 +1353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  lootToSpawn: {fileID: 0}
 --- !u!65 &1070888547
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1571,6 +1574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  lootToSpawn: {fileID: 0}
 --- !u!65 &1289211193
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2093,6 +2097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  lootToSpawn: {fileID: 0}
 --- !u!65 &1571610238
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3101,6 +3106,10 @@ PrefabInstance:
       propertyPath: health
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -4464036748135494412, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
+      propertyPath: lootToSpawn
+      value: 
+      objectReference: {fileID: 2099640360297767463, guid: 0f042b19cb0c4e44ba03a86071b09ac9, type: 3}
     - target: {fileID: 381950344275548699, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0
@@ -3231,4 +3240,5 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3406645076314846495, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
+    - {fileID: 8736603246468636828, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
