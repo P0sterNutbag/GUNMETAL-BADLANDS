@@ -5,10 +5,11 @@ using UnityEngine;
 public class EnemyShooting : MonoBehaviour
 {
     public GameObject bulletPrefab;
+    public int bulletForce;
 
     public void ShootPlayer(GameObject targetPlayer)
     {
-        print("Shoot");
+        //print("Shoot");
         CalcWhereToShoot();
         ShootProjectile(targetPlayer);
         // Steal code from player, calc how to hit enemy
@@ -23,13 +24,13 @@ public class EnemyShooting : MonoBehaviour
     private void ShootProjectile(GameObject targetPlayer)
     {
 
-        Vector3 towardsPlayer = targetPlayer.transform.position - transform.position;
+        Vector3 towardsPlayer = (targetPlayer.transform.position - transform.position).normalized;
         // Create a new bullet object at the fire point
         GameObject projectileBullet = Instantiate(bulletPrefab, transform.position + (towardsPlayer * 2), transform.rotation);
         //projectileBullet.GetComponent<Bullet>().owner = player.gameObject;
         //projectileBullet.GetComponent<Bullet>().damage = damage;
         // Get the rigidbody component of the bullet object and apply a force to it to shoot it
         Rigidbody rb = projectileBullet.GetComponent<Rigidbody>();
-        rb.AddForce((towardsPlayer) * 2, ForceMode.Impulse);
+        rb.AddForce((towardsPlayer) * bulletForce, ForceMode.Impulse);
     }
 }
