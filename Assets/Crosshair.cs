@@ -25,8 +25,13 @@ public class Crosshair : MonoBehaviour
 
     void Update()
     {
+<<<<<<< Updated upstream
         float posChange = gun.aimVariance*100f;
         //Debug.Log(posChange);
+=======
+        float posChange = gun.aimVariance*150f;
+        Debug.Log(posChange);
+>>>>>>> Stashed changes
         barTop.localPosition = new Vector3(0f, barTopOrg + posChange, 0f);
         barRight.localPosition = new Vector3(barRightOrg + posChange, 0f, 0f);
         barBottom.localPosition = new Vector3(0f, barBottomOrg - posChange, 0f);

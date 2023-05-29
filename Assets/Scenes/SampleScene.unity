@@ -2857,11 +2857,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 568417399692465916, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.702
+      value: 41.53
       objectReference: {fileID: 0}
     - target: {fileID: 568417399692465916, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 248.28285
+      value: 82.17
       objectReference: {fileID: 0}
     - target: {fileID: 568417399692465916, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2926,6 +2926,14 @@ PrefabInstance:
     - target: {fileID: 568417400162706209, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
       propertyPath: bulletForce
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 568417400162706209, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+      propertyPath: aimVarianceMin
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 568417400162706209, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
+      propertyPath: aimVarianceSpeed
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 568417400162706209, guid: 9efa986ee373b5f4da679b30612d8476, type: 3}
       propertyPath: aimVarianceCooldown
