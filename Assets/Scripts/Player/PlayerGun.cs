@@ -23,7 +23,6 @@ public class PlayerGun : MonoBehaviour
 
     [Header("Generals Values")]
     public float damage = 10f;
-    public float range = 100f;
     public float aimVarianceMin = 0.5f;
     public float aimVarianceMax = 3f;
     public float aimVarianceSpeed = 1f;
@@ -156,7 +155,7 @@ public class PlayerGun : MonoBehaviour
         // get direction towards camera
         Vector3 aimDir;
         RaycastHit cast;
-        if (Physics.Raycast(fpsCam.transform.position + fpsCam.transform.forward*1.25f, fpsCam.transform.forward, out cast, range))
+        if (Physics.Raycast(fpsCam.transform.position + fpsCam.transform.forward*1.25f, fpsCam.transform.forward, out cast))
         {
             Vector3 aimPoint = cast.point;
             Vector3 dir = aimPoint - firePoint;
@@ -180,7 +179,7 @@ public class PlayerGun : MonoBehaviour
                 }
 
                 RaycastHit hit;
-                if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+                if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit))
                 {
                     EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
                     Vector3 hitPosition = hit.point;
@@ -235,7 +234,7 @@ public class PlayerGun : MonoBehaviour
                     bullet.transform.position = firePoint + (aimDir * 200);
                 }
 
-                if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+                if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit))
                 {
                     EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
                     Vector3 hitPosition = hit.point;
@@ -258,7 +257,7 @@ public class PlayerGun : MonoBehaviour
     {
         if (Physics.Raycast(fpsCam.transform.position + fpsCam.transform.forward * 1.25f, fpsCam.transform.forward, out RaycastHit cast))
         {
-            return cast.distance.ToString();
+            return System.Math.Round(cast.distance,2).ToString();
         }
         else
         {
