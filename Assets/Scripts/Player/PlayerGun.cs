@@ -254,6 +254,18 @@ public class PlayerGun : MonoBehaviour
         }
     }
 
+    public string GetRange()
+    {
+        if (Physics.Raycast(fpsCam.transform.position + fpsCam.transform.forward * 1.25f, fpsCam.transform.forward, out RaycastHit cast))
+        {
+            return cast.distance.ToString();
+        }
+        else
+        {
+            return "null";
+        }
+    }
+
     /*private void Reload() 
     {
         if (ammo >= clipMax)
