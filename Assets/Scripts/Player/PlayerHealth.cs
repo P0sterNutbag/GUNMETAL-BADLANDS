@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public float health;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,10 @@ public class PlayerHealth : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        health -= dmg;
     }
 }

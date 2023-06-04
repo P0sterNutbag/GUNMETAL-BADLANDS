@@ -6,6 +6,7 @@ public class EnemyShooting : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public int bulletForce;
+    public float damage;
 
     public void ShootPlayer(GameObject targetPlayer)
     {
@@ -32,5 +33,6 @@ public class EnemyShooting : MonoBehaviour
         // Get the rigidbody component of the bullet object and apply a force to it to shoot it
         Rigidbody rb = projectileBullet.GetComponent<Rigidbody>();
         rb.AddForce((towardsPlayer) * bulletForce, ForceMode.Impulse);
+        projectileBullet.GetComponent<BulletProjectile>().damage = damage;
     }
 }

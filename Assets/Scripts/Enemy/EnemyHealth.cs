@@ -23,7 +23,10 @@ public class EnemyHealth : MonoBehaviour
 
     void SpawnLoot()
     {
-        GameObject loot = Instantiate(lootToSpawn);
-        loot.transform.position = transform.position;
+        if (lootToSpawn != null)
+        {
+            GameObject loot = Instantiate(lootToSpawn);
+            loot.transform.position = transform.position;
+        }
     }
 }
