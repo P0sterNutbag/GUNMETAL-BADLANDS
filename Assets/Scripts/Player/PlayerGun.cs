@@ -261,7 +261,7 @@ public class PlayerGun : MonoBehaviour
         }
         else
         {
-            return "null";
+            return "";
         }
     }
 
