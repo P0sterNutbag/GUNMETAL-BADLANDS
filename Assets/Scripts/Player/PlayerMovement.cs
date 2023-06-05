@@ -163,10 +163,12 @@ public class PlayerMovement : MonoBehaviour
                     if (currentSpeed > 0)
                     {
                         currentSpeed -= accelerationSpd * Time.deltaTime;
+                        if (currentSpeed < 0)  currentSpeed = 0;
                     }
                     else if (currentSpeed < 0)
                     {
                         currentSpeed += accelerationSpd * Time.deltaTime;
+                        if (currentSpeed > 0)  currentSpeed = 0;
                     }
                 }
 

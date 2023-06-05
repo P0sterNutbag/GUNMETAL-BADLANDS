@@ -88,6 +88,8 @@ public class PlayerGun : MonoBehaviour
         {
             if (ammo > 0)
             {
+                ammo--;
+                nextTimetoFire = Time.time + 1f / fireRate;
                 if (myGunType == gunType.charge)
                 {
                     if (chargeTimer >= chargeTimerMax)
@@ -146,9 +148,6 @@ public class PlayerGun : MonoBehaviour
 
     void Shoot(gunType type, Vector3 firePoint, Quaternion fireRotation)
     {
-        ammo--;
-        nextTimetoFire = Time.time + 1f / fireRate;
-
         // animate 
         animator.SetTrigger("Shoot");
 
@@ -215,6 +214,7 @@ public class PlayerGun : MonoBehaviour
                 script.maxSpeed = missileForceMax;
                 script.explosionDamage = damage;
                 script.owner = player.gameObject;
+                script.moveDirection = aimDir;
 
                 // randomize direction
                 //float randomRange = 10f;

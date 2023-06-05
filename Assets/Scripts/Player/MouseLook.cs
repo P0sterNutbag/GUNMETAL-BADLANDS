@@ -5,7 +5,8 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
 
-    public float mouseSensitivity = 200f;
+    public float mouseSensitivityNormal;
+    public float mouseSensitivityZoom;
     public bool isHolding = false;
     public float defaultFov;
     public bool isZooming = false;
@@ -23,6 +24,7 @@ public class MouseLook : MonoBehaviour
     public LayerMask groundMask;
 
     private float timer = 0f;
+    private float mouseSensitivity;
     private Vector3 originalPosition;
     float xRotation = 0f;
     float yRotation = 0f;
@@ -33,6 +35,7 @@ public class MouseLook : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         defaultFov = cam.fieldOfView;
         originalPosition = transform.localPosition;
+        mouseSensitivity = mouseSensitivityNormal;
     }
 
     // Update is called once per frame
@@ -95,10 +98,12 @@ public class MouseLook : MonoBehaviour
         if (isZooming)
         {
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, defaultFov/ camZoomAmount, camZoomSpd);
+            mouseSensitivity = mouseSensitivityZoom;
         }
         else 
         {
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, defaultFov, camZoomSpd);
+            mouseSensitivity = mouseSensitivityNormal;
         }
     }
 }
