@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // state machine
         switch (currentState)
         {
             case State.Walk:
