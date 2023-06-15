@@ -5,8 +5,8 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
 
-    public float mouseSensitivityNormal;
-    public float mouseSensitivityZoom;
+    public float mouseSensitivityNormal = 100f;
+    public float mouseSensitivityZoom = 25f;
     public bool isHolding = false;
     public float defaultFov;
     public bool isZooming = false;
@@ -19,7 +19,6 @@ public class MouseLook : MonoBehaviour
 
     public Camera cam;
     public Transform playerBody;
-    public GameObject gun;
     public PlayerMovement player;
     public LayerMask groundMask;
 
@@ -47,15 +46,17 @@ public class MouseLook : MonoBehaviour
                 // look towards mouse
                 float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
                 float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-                
+                Debug.Log(mouseX);
+                Debug.Log(mouseY);
+
                 xRotation -= mouseY;
                 xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
                 yRotation += mouseX;
                 yRotation = Mathf.Clamp(yRotation, player.moveDirection-90f, player.moveDirection+90f);
 
-                transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-                playerBody.localRotation = Quaternion.Euler(0f, yRotation, 0f);
+                transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+                //playerBody.localRotation = Quaternion.Euler(0f, yRotation, 0f);
 
                 // headbob
                 if (player.currentSpeed != 0 && player.isGrounded)

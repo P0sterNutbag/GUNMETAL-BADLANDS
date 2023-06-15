@@ -7,14 +7,13 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
 
+    [Header("Movement")]
     public float speed = 12f;
     public float accelerationSpd = 0.1f;
+    public float turnSpeed = 180f; // for tank controls
     public float gravity = -9.81f;
-    public float jumpHiehgt = 3f;
-    public float slideForce = 10f;
-    public float maxSlideAngle = 90f;
-    public float turnSpeedTank = 180f; // for tank controls
-    public float groundDistance = 0.4f;
+    public bool isTankControls;
+    [Header("Boost")]
     public float boostSpeedMax = 20f;
     public float boostAcceleration = 0.02f;
     public float boostMax = 12f;
@@ -22,22 +21,21 @@ public class PlayerMovement : MonoBehaviour
     public float boostTimeMax = 60f;
     public float boostTimeChargeSpd = 0.025f;
     public float boostCooldownTime = 1f;
-    public float turnSpeedNorm = 0.01f;
-
+    [Header("Gameobjects")]
     public Transform groundCheck;
     public LayerMask groundMask;
-    public bool isHolding = false;
-    public bool isTankControls = false;
     public GameObject boostbar;
-    public Quaternion moveRotation;
-    private Vector3 move;
+
     [HideInInspector]
     public float moveDirection = 0f;
     public float currentSpeed = 0f;
     public float boostSpeed = 0f;
+    private float groundDistance = 0.4f;
 
     private bool isBoosting = false;
     private bool isBoostVertical = false;
+    private Quaternion moveRotation;
+    private Vector3 move;
 
     public enum State
     { 
@@ -123,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
                     }
                     currentSpeed = Mathf.Clamp(currentSpeed, -speed, speed);
                     // determine direction
-                    moveDirection += horizontal * turnSpeedTank * Time.deltaTime;
+                    moveDirection += horizontal * turnSpeed * Time.deltaTime;
                     moveRotation = Quaternion.AngleAxis(moveDirection, Vector3.up);
                     Vector3 movementVector = moveRotation * Vector3.forward * currentSpeed * Time.deltaTime;
                     if (isGrounded && !isBoosting) { movementVector.y = -4.5f; } // get rid of bumps down slopes
@@ -140,12 +138,6 @@ public class PlayerMovement : MonoBehaviour
                 {
                     Vector3 newMove = Vector3.up * boostSpeed * Time.deltaTime;
                     controller.Move(newMove);
-                }
-
-                // jump
-                if (Input.GetButtonDown("Jump") && isGrounded)
-                {
-                    velocity.y = Mathf.Sqrt(jumpHiehgt * -2f * gravity);
                 }
 
                 // change and apply gravity
