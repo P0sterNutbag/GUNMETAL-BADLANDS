@@ -111,7 +111,6 @@ GameObject:
   - component: {fileID: 8895652897084949157}
   - component: {fileID: 8800954827481440292}
   - component: {fileID: 8822259706289633467}
-  - component: {fileID: 6614026942128520946}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Untagged
@@ -204,18 +203,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   defense: 0
---- !u!114 &6614026942128520946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3622648193234343612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b8263dabc9e4df4794f8102755a709a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3622648193661490597
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,6 +681,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 3622648194586258647}
     m_Modifications:
     - target: {fileID: 2053496878909140792, guid: 0a305433d5d370f41bfa574d2ba93640, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: e0044ad5f0861184db7d363e0ddd3734, type: 2}
+    - target: {fileID: 2053496878909140792, guid: 0a305433d5d370f41bfa574d2ba93640, type: 3}
       propertyPath: fpsCam
       value: 
       objectReference: {fileID: 3622648193772408995}
@@ -807,6 +798,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GunLeft
       objectReference: {fileID: 0}
+    - target: {fileID: 1090648945442562255, guid: 4aa1e2ffdf1df554981812401b22030a, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: e0044ad5f0861184db7d363e0ddd3734, type: 2}
     - target: {fileID: 1090648945442562255, guid: 4aa1e2ffdf1df554981812401b22030a, type: 3}
       propertyPath: fpsCam
       value: 

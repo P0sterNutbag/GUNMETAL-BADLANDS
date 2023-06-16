@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerGun : MonoBehaviour
 {
+
+    public GunStats stats;
+
     public enum gunType
     {
         hitscan,
@@ -74,6 +77,7 @@ public class PlayerGun : MonoBehaviour
         player = GameObject.FindWithTag("Player").transform;
         chargeTimer = chargeTimerMax;
         aimVariance = aimVarianceMin;
+        myGunType = stats.myGunType;
     }
     // Update is called once per frame
     void Update()
