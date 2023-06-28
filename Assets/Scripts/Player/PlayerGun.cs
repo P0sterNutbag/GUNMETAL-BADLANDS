@@ -24,28 +24,30 @@ public class PlayerGun : MonoBehaviour
     }
     public fireType myFireType = fireType.single;
 
+    #region STATS ARE NOW IN THE GUNSTAT OBJECTS
     [Header("Generals Values")]
-    public float damage = 10f;
+    /*public float damage = 10f;
     public float aimVarianceMin = 0.5f;
     public float aimVarianceMax = 3f;
     public float aimVarianceSpeed = 1f;
     public float aimVarianceCooldown = 1.25f;
     public float bulletForce = 150f;
-    public float impactForce = 30f;
-    public float fireRate = 15f;
-    public float ammo;
+    public float stats.impactForce = 30f;
+    public float stats.fireRate = 15f;
+    public float stats.ammo;
 
     [Header("Missile Values")]
-    public float missileForceStart = 5f;
-    public float missileForceMax = 20f;
+    public float stats.missileForceStart = 5f;
+    public float stats.missileForceMax = 20f;
 
     [Header("Burstfire Values")]
-    public float bulletsPerShot = 3f;
-    public float bulletsDelay = 0.5f;
+    public float stats.bulletsPerShot = 3f;
+    public float stats.bulletsDelay = 0.5f;
 
     [Header("Chargeshot Values")]
-    public float chargeTimerMax;
-    
+    public float stats.chargeTimerMax;*/
+    #endregion
+
     [Header("Controls")]
     public string firebutton;
 
@@ -75,8 +77,8 @@ public class PlayerGun : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
-        chargeTimer = chargeTimerMax;
-        aimVariance = aimVarianceMin;
+        chargeTimer = stats.chargeTimerMax;
+        aimVariance = stats.stats.aimVarianceMin;
         myGunType = stats.myGunType;
     }
     // Update is called once per frame
@@ -90,13 +92,13 @@ public class PlayerGun : MonoBehaviour
         // shoot
         if (fireButton && Time.time >= nextTimetoFire)
         {
-            if (ammo > 0)
+            if (stats.ammo > 0)
             {
-                ammo--;
-                nextTimetoFire = Time.time + 1f / fireRate;
+                stats.ammo--;
+                nextTimetoFire = Time.time + 1f / stats.fireRate;
                 if (myGunType == gunType.charge)
                 {
-                    if (chargeTimer >= chargeTimerMax)
+                    if (chargeTimer >= stats.chargeTimerMax)
                     {
                         Shoot(myGunType, firePoint.transform.position, firePoint.rotation);
                         chargeTimer = 0;
@@ -104,7 +106,7 @@ public class PlayerGun : MonoBehaviour
                     else
                     {
                         chargeTimer += Time.deltaTime;
-                        chargebar.GetComponent<Healthbar>().SetHealth(chargeTimer, chargeTimerMax);
+                        chargebar.GetComponent<Healthbar>().SetHealth(chargeTimer, stats.chargeTimerMax);
                     }
                 }
                 else
@@ -123,29 +125,29 @@ public class PlayerGun : MonoBehaviour
         else if (myGunType == gunType.charge)
         {
             chargeTimer = 0;
-            chargebar.GetComponent<Healthbar>().SetHealth(chargeTimer, chargeTimerMax);
+            chargebar.GetComponent<Healthbar>().SetHealth(chargeTimer, stats.chargeTimerMax);
         }
         // burst fire
-        if (bulletCounter < bulletsPerShot)
+        if (bulletCounter < stats.bulletsPerShot)
         {
             if (Time.time >= nextTimetoBullet)
             {
                 Shoot(myGunType, firePoint.transform.position, firePoint.rotation);
                 bulletCounter++;
-                nextTimetoBullet = Time.time + bulletsDelay;
+                nextTimetoBullet = Time.time + stats.bulletsDelay;
             }
         }
 
         // aim variance
         if (fireButtonDown)
         {
-            if (aimVariance < aimVarianceMax)
+            if (aimVariance < stats.aimVarianceMax)
             {
-                aimVariance += aimVarianceSpeed * Time.deltaTime;
+                aimVariance += stats.aimVarianceSpeed * Time.deltaTime;
             }
-        } else if (aimVariance > aimVarianceMin)
+        } else if (aimVariance > stats.aimVarianceMin)
         {
-            aimVariance = Mathf.Lerp(aimVariance, aimVarianceMin, aimVarianceCooldown * Time.deltaTime);
+            aimVariance = Mathf.Lerp(aimVariance, stats.aimVarianceMin, stats.stats.aimVarianceCooldown * Time.deltaTime);
         }
 
     }
@@ -189,12 +191,12 @@ public class PlayerGun : MonoBehaviour
 
                     if (target != null)
                     {
-                        target.TakeDamage(damage);
+                        target.Takestats.damage(stats.damage);
                     }
 
                     if (hit.rigidbody != null)
                     {
-                        hit.rigidbody.AddForce(-hit.normal * impactForce);
+                        hit.rigidbody.AddForce(-hit.normal * stats.impactForce);
                     }
                 }
                 break;
@@ -202,10 +204,10 @@ public class PlayerGun : MonoBehaviour
                 // Create a new bullet object at the fire point
                 GameObject projectileBullet = Instantiate(bulletPrefab, firePoint, fireRotation);
                 projectileBullet.GetComponent<Bullet>().owner = player.gameObject;
-                projectileBullet.GetComponent<Bullet>().damage = damage;
+                projectileBullet.GetComponent<Bullet>().stats.damage = stats.damage;
                 // Get the rigidbody component of the bullet object and apply a force to it to shoot it
                 Rigidbody rb = projectileBullet.GetComponent<Rigidbody>();
-                rb.AddForce(aimDir * bulletForce, ForceMode.Impulse);
+                rb.AddForce(aimDir * stats.bulletForce, ForceMode.Impulse);
                 break;
             case gunType.missile:
                 // Create a new bullet object at the fire point
@@ -214,9 +216,9 @@ public class PlayerGun : MonoBehaviour
                 // set missile target position
                 //missile.GetComponent<Missile>().target = aimPoint;
                 Missile script = missile.GetComponent<Missile>();
-                script.speed = missileForceStart;
-                script.maxSpeed = missileForceMax;
-                script.explosionDamage = damage;
+                script.speed = stats.missileForceStart;
+                script.maxSpeed = stats.missileForceMax;
+                script.explosionstats.damage = stats.damage;
                 script.owner = player.gameObject;
                 script.moveDirection = aimDir;
 
@@ -226,7 +228,7 @@ public class PlayerGun : MonoBehaviour
 
                 // Get the rigidbody component of the bullet object and apply a force to it to shoot it
                 rb = missile.GetComponent<Rigidbody>();
-                rb.AddForce(aimDir * missileForceStart, ForceMode.Impulse);
+                rb.AddForce(aimDir * stats.missileForceStart, ForceMode.Impulse);
                 break;
             case gunType.charge:
                 // make bullet trail
@@ -245,12 +247,12 @@ public class PlayerGun : MonoBehaviour
 
                     if (target != null)
                     {
-                        target.TakeDamage(damage);
+                        target.Takestats.damage(stats.damage);
                     }
 
                     if (hit.rigidbody != null)
                     {
-                        hit.rigidbody.AddForce(-hit.normal * impactForce);
+                        hit.rigidbody.AddForce(-hit.normal * stats.impactForce);
                     }
                 }
                 break;
@@ -271,15 +273,15 @@ public class PlayerGun : MonoBehaviour
 
     /*private void Reload() 
     {
-        if (ammo >= clipMax)
+        if (stats.ammo >= clipMax)
         {
-            ammoInClip = clipMax;
-            ammo -= clipMax;
+            stats.ammoInClip = clipMax;
+            stats.ammo -= clipMax;
         }
-        else if (ammo > 0)
+        else if (stats.ammo > 0)
         {
-            ammoInClip = ammo;
-            ammo = 0;
+            stats.ammoInClip = stats.ammo;
+            stats.ammo = 0;
         }
     }*/
 }
