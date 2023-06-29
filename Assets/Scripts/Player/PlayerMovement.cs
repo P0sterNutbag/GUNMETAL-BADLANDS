@@ -118,9 +118,13 @@ public class PlayerMovement : MonoBehaviour
                 if (states.isTankControls)
                 {
                     // determine speed
-                    if (vertical != 0)
+                    if (vertical > 0)
                     {
-                        currentSpeed += states.accelerationSpd * vertical * Time.deltaTime;
+                        currentSpeed += states.accelerationSpd * Time.deltaTime;
+                    }
+                    else if (vertical < 0)
+                    {
+                        currentSpeed -= stats.decelerationSpd * Time.deltaTime;
                     }
                     currentSpeed = Mathf.Clamp(currentSpeed, -speed, speed);
                     // determine direction
