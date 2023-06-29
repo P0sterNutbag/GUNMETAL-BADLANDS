@@ -213,18 +213,12 @@ public class PlayerGun : MonoBehaviour
                 // Create a new bullet object at the fire point
                 GameObject missile = Instantiate(missilePrefab, firePoint, fireRotation);
 
-                // set missile target position
-                //missile.GetComponent<Missile>().target = aimPoint;
                 Missile script = missile.GetComponent<Missile>();
                 script.speed = stats.missileForceStart;
                 script.maxSpeed = stats.missileForceMax;
                 script.explosionstats.damage = stats.damage;
                 script.owner = player.gameObject;
                 script.moveDirection = aimDir;
-
-                // randomize direction
-                //float randomRange = 10f;
-                //Vector3 missleDir = aimDir + new Vector3(Random.Range(-randomRange, randomRange), Random.Range(-randomRange, randomRange), Random.Range(-randomRange, randomRange));
 
                 // Get the rigidbody component of the bullet object and apply a force to it to shoot it
                 rb = missile.GetComponent<Rigidbody>();

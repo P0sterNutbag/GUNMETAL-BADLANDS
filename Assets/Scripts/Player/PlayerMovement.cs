@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
 
+    public Legs stats;
     [Header("Movement")]
     public float speed = 12f;
     public float accelerationSpd = 0.1f;
