@@ -8,12 +8,14 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
 
     public Legs stats;
-    [Header("Movement")]
-    public float speed = 12f;
-    public float accelerationSpd = 0.1f;
-    public float turnSpeed = 180f; // for tank controls
-    public float gravity = -9.81f;
-    public bool isTankControls;
+    #region old stats
+    [Header("Movement")]   
+    /*float states.speed = 12f;
+    public float states.accelerationSpd = 0.1f;
+    public float states.turnSpeed = 180f; // for tank controls
+    public float states.gravity = -9.81f;
+    public bool states.isTankControls;*/
+    #endregion
     [Header("Boost")]
     public float boostSpeedMax = 20f;
     public float boostAcceleration = 0.02f;
@@ -71,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
                 // determine boost direction
                 if (Input.GetKeyDown("left shift"))
                 {
-                    if ((horizontal == 0 && vertical == 0) || isTankControls) //|| (!isGrounded))
+                    if ((horizontal == 0 && vertical == 0) || states.isTankControls) //|| (!isGrounded))
                     {
                         isBoostVertical = true;
                     }
@@ -113,16 +115,16 @@ public class PlayerMovement : MonoBehaviour
                 boostbar.GetComponent<Healthbar>().SetHealth(boostTime, boostTimeMax);
 
                 // move
-                if (isTankControls)
+                if (states.isTankControls)
                 {
                     // determine speed
                     if (vertical != 0)
                     {
-                        currentSpeed += accelerationSpd * vertical * Time.deltaTime;
+                        currentSpeed += states.accelerationSpd * vertical * Time.deltaTime;
                     }
                     currentSpeed = Mathf.Clamp(currentSpeed, -speed, speed);
                     // determine direction
-                    moveDirection += horizontal * turnSpeed * Time.deltaTime;
+                    moveDirection += horizontal * states.turnSpeed * Time.deltaTime;
                     moveRotation = Quaternion.AngleAxis(moveDirection, Vector3.up);
                     Vector3 movementVector = moveRotation * Vector3.forward * currentSpeed * Time.deltaTime;
                     if (isGrounded && !isBoosting) { movementVector.y = -4.5f; } // get rid of bumps down slopes
@@ -144,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
                 // change and apply gravity
                 if (!isGrounded && !isBoosting)
                 {
-                    velocity.y += gravity * Time.deltaTime;
+                    velocity.y += states.gravity * Time.deltaTime;
                 }
                 else
                 {
@@ -152,16 +154,16 @@ public class PlayerMovement : MonoBehaviour
                 }
 
                 // brake
-                if (isTankControls && Input.GetButton("Brake"))
+                if (states.isTankControls && Input.GetButton("Brake"))
                 {
                     if (currentSpeed > 0)
                     {
-                        currentSpeed -= accelerationSpd * Time.deltaTime;
+                        currentSpeed -= states.accelerationSpd * Time.deltaTime;
                         if (currentSpeed < 0)  currentSpeed = 0;
                     }
                     else if (currentSpeed < 0)
                     {
-                        currentSpeed += accelerationSpd * Time.deltaTime;
+                        currentSpeed += states.accelerationSpd * Time.deltaTime;
                         if (currentSpeed > 0)  currentSpeed = 0;
                     }
                 }
