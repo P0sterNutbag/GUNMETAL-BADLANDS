@@ -61,7 +61,7 @@ public class MouseLook : MonoBehaviour
                 // headbob
                 if (player.currentSpeed != 0 && player.isGrounded)
                 {
-                    float speedRatio = player.currentSpeed / player.speed;
+                    float speedRatio = player.currentSpeed / player.stats.speed;
                     float riseSpeed = bobRiseSpeed * speedRatio;
                     float fallSpeed = bobFallSpeed * speedRatio;
                     float frequency = bobFrequency * speedRatio;

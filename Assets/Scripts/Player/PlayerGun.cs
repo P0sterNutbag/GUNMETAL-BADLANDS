@@ -78,7 +78,7 @@ public class PlayerGun : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").transform;
         chargeTimer = stats.chargeTimerMax;
-        aimVariance = stats.stats.aimVarianceMin;
+        aimVariance = stats.aimVarianceMin;
         myGunType = stats.myGunType;
     }
     // Update is called once per frame
@@ -147,7 +147,7 @@ public class PlayerGun : MonoBehaviour
             }
         } else if (aimVariance > stats.aimVarianceMin)
         {
-            aimVariance = Mathf.Lerp(aimVariance, stats.aimVarianceMin, stats.stats.aimVarianceCooldown * Time.deltaTime);
+            aimVariance = Mathf.Lerp(aimVariance, stats.aimVarianceMin, stats.aimVarianceCooldown * Time.deltaTime);
         }
 
     }
@@ -191,7 +191,7 @@ public class PlayerGun : MonoBehaviour
 
                     if (target != null)
                     {
-                        target.Takestats.damage(stats.damage);
+                        target.TakeDamage(stats.damage);
                     }
 
                     if (hit.rigidbody != null)
@@ -204,7 +204,7 @@ public class PlayerGun : MonoBehaviour
                 // Create a new bullet object at the fire point
                 GameObject projectileBullet = Instantiate(bulletPrefab, firePoint, fireRotation);
                 projectileBullet.GetComponent<Bullet>().owner = player.gameObject;
-                projectileBullet.GetComponent<Bullet>().stats.damage = stats.damage;
+                projectileBullet.GetComponent<Bullet>().damage = stats.damage;
                 // Get the rigidbody component of the bullet object and apply a force to it to shoot it
                 Rigidbody rb = projectileBullet.GetComponent<Rigidbody>();
                 rb.AddForce(aimDir * stats.bulletForce, ForceMode.Impulse);
@@ -213,12 +213,18 @@ public class PlayerGun : MonoBehaviour
                 // Create a new bullet object at the fire point
                 GameObject missile = Instantiate(missilePrefab, firePoint, fireRotation);
 
+                // set missile target position
+                //missile.GetComponent<Missile>().target = aimPoint;
                 Missile script = missile.GetComponent<Missile>();
                 script.speed = stats.missileForceStart;
                 script.maxSpeed = stats.missileForceMax;
-                script.explosionstats.damage = stats.damage;
+                script.explosionDamage = stats.damage;
                 script.owner = player.gameObject;
                 script.moveDirection = aimDir;
+
+                // randomize direction
+                //float randomRange = 10f;
+                //Vector3 missleDir = aimDir + new Vector3(Random.Range(-randomRange, randomRange), Random.Range(-randomRange, randomRange), Random.Range(-randomRange, randomRange));
 
                 // Get the rigidbody component of the bullet object and apply a force to it to shoot it
                 rb = missile.GetComponent<Rigidbody>();
@@ -241,7 +247,7 @@ public class PlayerGun : MonoBehaviour
 
                     if (target != null)
                     {
-                        target.Takestats.damage(stats.damage);
+                        target.TakeDamage(stats.damage);
                     }
 
                     if (hit.rigidbody != null)

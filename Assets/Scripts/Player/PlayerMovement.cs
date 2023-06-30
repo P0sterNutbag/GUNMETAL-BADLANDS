@@ -10,11 +10,11 @@ public class PlayerMovement : MonoBehaviour
     public Legs stats;
     #region old stats
     [Header("Movement")]   
-    /*float states.speed = 12f;
-    public float states.accelerationSpd = 0.1f;
-    public float states.turnSpeed = 180f; // for tank controls
-    public float states.gravity = -9.81f;
-    public bool states.isTankControls;*/
+    /*float stats.speed = 12f;
+    public float stats.accelerationSpd = 0.1f;
+    public float stats.turnSpeed = 180f; // for tank controls
+    public float stats.gravity = -9.81f;
+    public bool stats.isTankControls;*/
     #endregion
     [Header("Boost")]
     public float boostSpeedMax = 20f;
@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
                 // determine boost direction
                 if (Input.GetKeyDown("left shift"))
                 {
-                    if ((horizontal == 0 && vertical == 0) || states.isTankControls) //|| (!isGrounded))
+                    if ((horizontal == 0 && vertical == 0) || stats.isTankControls) //|| (!isGrounded))
                     {
                         isBoostVertical = true;
                     }
@@ -115,20 +115,20 @@ public class PlayerMovement : MonoBehaviour
                 boostbar.GetComponent<Healthbar>().SetHealth(boostTime, boostTimeMax);
 
                 // move
-                if (states.isTankControls)
+                if (stats.isTankControls)
                 {
                     // determine speed
                     if (vertical > 0)
                     {
-                        currentSpeed += states.accelerationSpd * Time.deltaTime;
+                        currentSpeed += stats.accelerationSpd * Time.deltaTime;
                     }
                     else if (vertical < 0)
                     {
                         currentSpeed -= stats.decelerationSpd * Time.deltaTime;
                     }
-                    currentSpeed = Mathf.Clamp(currentSpeed, -speed, speed);
+                    currentSpeed = Mathf.Clamp(currentSpeed, -stats.speed, stats.speed);
                     // determine direction
-                    moveDirection += horizontal * states.turnSpeed * Time.deltaTime;
+                    moveDirection += horizontal * stats.turnSpeed * Time.deltaTime;
                     moveRotation = Quaternion.AngleAxis(moveDirection, Vector3.up);
                     Vector3 movementVector = moveRotation * Vector3.forward * currentSpeed * Time.deltaTime;
                     if (isGrounded && !isBoosting) { movementVector.y = -4.5f; } // get rid of bumps down slopes
@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
                 else 
                 {
                     Vector3 move = transform.right * horizontal + transform.forward * vertical;
-                    controller.Move(move * (speed + boostSpeed) * Time.deltaTime);
+                    controller.Move(move * (stats.speed + boostSpeed) * Time.deltaTime);
                 }
 
                 // boost up if not moving
@@ -150,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
                 // change and apply gravity
                 if (!isGrounded && !isBoosting)
                 {
-                    velocity.y += states.gravity * Time.deltaTime;
+                    velocity.y += stats.gravity * Time.deltaTime;
                 }
                 else
                 {
@@ -158,16 +158,16 @@ public class PlayerMovement : MonoBehaviour
                 }
 
                 // brake
-                if (states.isTankControls && Input.GetButton("Brake"))
+                if (stats.isTankControls && Input.GetButton("Brake"))
                 {
                     if (currentSpeed > 0)
                     {
-                        currentSpeed -= states.accelerationSpd * Time.deltaTime;
+                        currentSpeed -= stats.accelerationSpd * Time.deltaTime;
                         if (currentSpeed < 0)  currentSpeed = 0;
                     }
                     else if (currentSpeed < 0)
                     {
-                        currentSpeed += states.accelerationSpd * Time.deltaTime;
+                        currentSpeed += stats.accelerationSpd * Time.deltaTime;
                         if (currentSpeed > 0)  currentSpeed = 0;
                     }
                 }
