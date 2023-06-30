@@ -167,11 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 8895652897084949157}
-  speed: 12
-  accelerationSpd: 0.25
-  turnSpeed: 180
-  gravity: -9.81
-  isTankControls: 1
+  stats: {fileID: 11400000, guid: a98340f0649037b44845cbd168c1b5f3, type: 2}
   boostSpeedMax: 20
   boostAcceleration: 0.02
   boostMax: 12
