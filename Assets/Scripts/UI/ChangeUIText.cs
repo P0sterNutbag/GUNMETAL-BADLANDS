@@ -39,8 +39,8 @@ public class ChangeUIText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ammoLeft = gunLeft.GetComponent<PlayerGun>().ammo;
-        ammoRight = gunRight.GetComponent<PlayerGun>().ammo;
+        ammoLeft = gunLeft.GetComponent<PlayerGun>().stats.ammo;
+        ammoRight = gunRight.GetComponent<PlayerGun>().stats.ammo;
         aimDistance = gunLeft.GetComponent<PlayerGun>().GetRange();
         health = player.GetComponent<PlayerHealth>().health;
         speed = Mathf.Round(player.GetComponent<PlayerMovement>().currentSpeed*5);
