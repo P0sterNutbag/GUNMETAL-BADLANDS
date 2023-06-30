@@ -6,6 +6,7 @@ using UnityEngine;
 public class GunStats : Equipment
 {
     public PlayerGun.gunType myGunType;
+    public PlayerGun.fireType myFireType;
 
     [Header("Generals Values")]
     public float damage = 10f;
@@ -21,7 +22,7 @@ public class GunStats : Equipment
     public float impactForce = 30f;
     [Tooltip("Amount of bullets fired every second")]
     public float fireRate = 15f;
-    public float ammo;
+    public float ammo = 100;
 
     [Header("Missile Values")]
     [Tooltip("Initial speed of missile")]

@@ -740,6 +740,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3622648192984489216, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: ab3c249923c37ed40b708b46f90b11df, type: 2}
+    - target: {fileID: 3622648192984489216, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}
       propertyPath: firebutton
       value: Fire2
       objectReference: {fileID: 0}
@@ -847,6 +851,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3622648195087111352, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: e0044ad5f0861184db7d363e0ddd3734, type: 2}
     - target: {fileID: 3622648195087111352, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}
       propertyPath: firebutton
       value: Fire1

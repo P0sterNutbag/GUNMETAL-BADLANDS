@@ -9,21 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 494e3194bb6da874883e17d24c2878d5, type: 3}
-  m_Name: Gun1
+  m_Script: {fileID: 11500000, guid: 5b0856279b0474d42aa18e74361e3f24, type: 3}
+  m_Name: New Gun
   m_EditorClassIdentifier: 
-  equipSlot: 1
-  myGunType: 1
-  myFireType: 2
+  equipSlot: 0
+  myGunType: 0
   damage: 10
   aimVarianceMin: 0.5
   aimVarianceMax: 3
   aimVarianceSpeed: 1
   aimVarianceCooldown: 1.25
-  bulletForce: 250
+  bulletForce: 150
   impactForce: 30
   fireRate: 15
-  ammo: 100
+  ammo: 0
   missileForceStart: 5
   missileForceMax: 20
   bulletsPerShot: 3

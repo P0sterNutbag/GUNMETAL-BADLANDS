@@ -14,15 +14,15 @@ public class PlayerGun : MonoBehaviour
         missile,
         charge
     }
-    [Header("Gun Type")]
-    public gunType myGunType = gunType.projectile;
+    //[Header("Gun Type")]
+    //public gunType stats.myGunType = gunType.projectile;
     public enum fireType
     {
         single,
         burst,
         auto
     }
-    public fireType myFireType = fireType.single;
+    //public fireType stats.myFireType = fireType.single;
 
     #region STATS ARE NOW IN THE GUNSTAT OBJECTS
     [Header("Generals Values")]
@@ -79,13 +79,12 @@ public class PlayerGun : MonoBehaviour
         player = GameObject.FindWithTag("Player").transform;
         chargeTimer = stats.chargeTimerMax;
         aimVariance = stats.aimVarianceMin;
-        myGunType = stats.myGunType;
     }
     // Update is called once per frame
     void Update()
     {
         // inputs
-        if (myFireType == fireType.auto || myGunType == gunType.charge) { fireButton = Input.GetButton(firebutton); }
+        if (stats.myFireType == fireType.auto || stats.myGunType == gunType.charge) { fireButton = Input.GetButton(firebutton); }
         else { fireButton = Input.GetButtonDown(firebutton); }
         fireButtonDown = Input.GetButton(firebutton);
 
@@ -96,11 +95,11 @@ public class PlayerGun : MonoBehaviour
             {
                 stats.ammo--;
                 nextTimetoFire = Time.time + 1f / stats.fireRate;
-                if (myGunType == gunType.charge)
+                if (stats.myGunType == gunType.charge)
                 {
                     if (chargeTimer >= stats.chargeTimerMax)
                     {
-                        Shoot(myGunType, firePoint.transform.position, firePoint.rotation);
+                        Shoot(stats.myGunType, firePoint.transform.position, firePoint.rotation);
                         chargeTimer = 0;
                     }
                     else
@@ -111,18 +110,18 @@ public class PlayerGun : MonoBehaviour
                 }
                 else
                 { 
-                    if (myFireType == fireType.burst)
+                    if (stats.myFireType == fireType.burst)
                     {
                         bulletCounter = 0f;
                     }
                     else
                     {
-                        Shoot(myGunType, firePoint.transform.position, firePoint.rotation);
+                        Shoot(stats.myGunType, firePoint.transform.position, firePoint.rotation);
                     }
                 }
             }
         }
-        else if (myGunType == gunType.charge)
+        else if (stats.myGunType == gunType.charge)
         {
             chargeTimer = 0;
             chargebar.GetComponent<Healthbar>().SetHealth(chargeTimer, stats.chargeTimerMax);
@@ -132,7 +131,7 @@ public class PlayerGun : MonoBehaviour
         {
             if (Time.time >= nextTimetoBullet)
             {
-                Shoot(myGunType, firePoint.transform.position, firePoint.rotation);
+                Shoot(stats.myGunType, firePoint.transform.position, firePoint.rotation);
                 bulletCounter++;
                 nextTimetoBullet = Time.time + stats.bulletsDelay;
             }

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Legs1
   m_EditorClassIdentifier: 
   equipSlot: 0
-  speed: 12
-  accelerationSpd: 0.1
-  decelerationSpd: 0.2
+  speed: 6
+  accelerationSpd: 2
+  decelerationSpd: 4
   turnSpeed: 180
   gravity: -9.81
   isTankControls: 1
