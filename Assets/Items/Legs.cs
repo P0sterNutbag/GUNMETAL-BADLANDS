@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Gun", menuName = "Equipment/Legs")]
+[CreateAssetMenu(fileName = "New Legs", menuName = "Equipment/Legs")]
 public class Legs : Equipment
 {
     public float speed = 12f;

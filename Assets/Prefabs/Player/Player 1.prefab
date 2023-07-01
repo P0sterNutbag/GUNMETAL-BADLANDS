@@ -80,8 +80,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3622648194413696380}
-  - {fileID: 3622648194586258647}
   - {fileID: 3622648194779056539}
+  - {fileID: 3622648194586258647}
   m_Father: {fileID: 3622648193234343613}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 8895652897084949157}
   - component: {fileID: 8800954827481440292}
   - component: {fileID: 8822259706289633467}
+  - component: {fileID: 9022767042457427981}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Untagged
@@ -199,6 +200,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   defense: 0
+--- !u!114 &9022767042457427981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3622648193234343612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 481dd51f716126b4db69d4a937a65ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myHead: {fileID: 0}
+  myGunLeft: {fileID: 11400000, guid: e0044ad5f0861184db7d363e0ddd3734, type: 2}
+  myGunRight: {fileID: 11400000, guid: ab3c249923c37ed40b708b46f90b11df, type: 2}
+  myLegs: {fileID: 11400000, guid: a98340f0649037b44845cbd168c1b5f3, type: 2}
+  HeadObject: {fileID: 3622648193234343612}
+  GunLeftObject: {fileID: 3622648195087111352}
+  GunRightObject: {fileID: 3622648192984489216}
+  LegsObject: {fileID: 8800954827481440292}
+  newgun: {fileID: 11400000, guid: ab3c249923c37ed40b708b46f90b11df, type: 2}
 --- !u!1 &3622648193661490597
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +571,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3622648194413696380}
   m_Layer: 0
-  m_Name: Torso
+  m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -601,7 +623,7 @@ Transform:
   m_Children:
   - {fileID: 3622648192984489223}
   m_Father: {fileID: 3622648193183843111}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3622648194629251626
 GameObject:
@@ -660,14 +682,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3622648194779056538}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9, y: 1.5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.8999939, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3622648195087111359}
   m_Father: {fileID: 3622648193183843111}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3330772420638126648
 PrefabInstance:
@@ -734,6 +756,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a305433d5d370f41bfa574d2ba93640, type: 3}
+--- !u!114 &3622648192984489216 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2053496878909140792, guid: 0a305433d5d370f41bfa574d2ba93640, type: 3}
+  m_PrefabInstance: {fileID: 3330772420638126648}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec0cc39edeae2d41a59b5c29bba9802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3622648192984489223 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2053496878909140799, guid: 0a305433d5d370f41bfa574d2ba93640, type: 3}
@@ -804,6 +837,17 @@ PrefabInstance:
       objectReference: {fileID: 3622648193772408995}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4aa1e2ffdf1df554981812401b22030a, type: 3}
+--- !u!114 &3622648195087111352 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1090648945442562255, guid: 4aa1e2ffdf1df554981812401b22030a, type: 3}
+  m_PrefabInstance: {fileID: 4423933657843151991}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec0cc39edeae2d41a59b5c29bba9802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3622648195087111359 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1090648945442562248, guid: 4aa1e2ffdf1df554981812401b22030a, type: 3}

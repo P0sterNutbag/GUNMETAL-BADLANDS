@@ -1194,6 +1194,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481dd51f716126b4db69d4a937a65ed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myHead: {fileID: 0}
+  myGunLeft: {fileID: 0}
+  myGunRight: {fileID: 0}
+  myLegs: {fileID: 0}
+  HeadObject: {fileID: 0}
+  GunLeftObject: {fileID: 0}
+  GunRightObject: {fileID: 0}
+  LegsObject: {fileID: 0}
 --- !u!4 &1556029803
 Transform:
   m_ObjectHideFlags: 0
