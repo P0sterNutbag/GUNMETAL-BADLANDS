@@ -23,7 +23,7 @@ MonoBehaviour:
   bulletForce: 150
   impactForce: 30
   fireRate: 15
-  ammo: 81
+  ammo: 97
   missileForceStart: 20
   missileForceMax: 150
   bulletsPerShot: 3

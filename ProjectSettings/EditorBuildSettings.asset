@@ -4,6 +4,12 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Overworld.unity
+    guid: 1f5a49d59f71a9543b96b6647ffb5fdb
+  - enabled: 1
+    path: Assets/Scenes/Combat.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c0447793e69609c4081bd3fecf8faa04, type: 2}
