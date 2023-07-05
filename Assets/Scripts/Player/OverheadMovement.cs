@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class OverheadMovement : MonoBehaviour
 {
     public CharacterController controller;
     public Legs stats;
-    
+    public Camera cam;
+
     [HideInInspector]
     public float moveDirection = 0f;
+    public float currentSpeed = 0f;
+    public float moveRotation = 0f;
 
     // Update is called once per frame
     void Update()
     {
         // Get the mouse position
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = transform.position.z; // Match the player's z-position
+        Vector3 mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
+        //mousePosition.z = transform.position.z; // Match the player's z-position
 
         // Rotate the player towards the mouse using LookAt
         transform.LookAt(mousePosition);
@@ -38,9 +41,9 @@ public class PlayerMovement : MonoBehaviour
         
         // determine direction
         moveDirection += horizontal * stats.turnSpeed * Time.deltaTime;
-        moveRotation = Quaternion.AngleAxis(moveDirection, Vector3.up);
+        Quaternion moveRotation = Quaternion.AngleAxis(moveDirection, Vector3.up);
         Vector3 movementVector = moveRotation * Vector3.forward * currentSpeed * Time.deltaTime;
-        if (isGrounded && !isBoosting) { movementVector.y = -4.5f; } // get rid of bumps down slopes
+        //if (isGrounded && !isBoosting) { movementVector.y = -4.5f; } // get rid of bumps down slopes
         
         // actually move
         controller.Move(movementVector);
