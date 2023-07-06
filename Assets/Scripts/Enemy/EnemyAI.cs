@@ -64,6 +64,8 @@ public class EnemyAI : MonoBehaviour
             //RotateTowardsTarget();
         }
 
+        Debug.Log(currState);
+
 
     }
 

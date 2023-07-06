@@ -8,17 +8,22 @@ public class BulletProjectile : MonoBehaviour
 
     [HideInInspector]
     public float damage;
+    [HideInInspector]
+    public Collider owner;
 
     void OnTriggerEnter(Collider other)
     {
-        // If the bullet collides with an object that has a Health component, damage it
-        PlayerHealth health = other.GetComponent<PlayerHealth>();
-        if (health != null)
+        if (other != owner)
         {
-            health.TakeDamage(damage);
-        }
+            // If the bullet collides with an object that has a Health component, damage it
+            PlayerHealth health = other.GetComponent<PlayerHealth>();
+            if (health != null)
+            {
+                health.TakeDamage(damage);
+            }
 
-        // Destroy the bullet on impact
-        Destroy(gameObject);
+            // Destroy the bullet on impact
+            Destroy(gameObject);
+        }
     }
 }

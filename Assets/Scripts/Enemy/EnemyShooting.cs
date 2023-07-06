@@ -13,6 +13,7 @@ public class EnemyShooting : MonoBehaviour
         //print("Shoot");
         CalcWhereToShoot();
         ShootProjectile(targetPlayer);
+        Debug.Log("bang");
         // Steal code from player, calc how to hit enemy
     }
 
@@ -33,6 +34,8 @@ public class EnemyShooting : MonoBehaviour
         // Get the rigidbody component of the bullet object and apply a force to it to shoot it
         Rigidbody rb = projectileBullet.GetComponent<Rigidbody>();
         rb.AddForce((towardsPlayer) * bulletForce, ForceMode.Impulse);
-        projectileBullet.GetComponent<BulletProjectile>().damage = damage;
+        BulletProjectile bulletscript = projectileBullet.GetComponent<BulletProjectile>();
+        bulletscript.damage = damage;
+        bulletscript.owner = gameObject.GetComponent<BoxCollider>();
     }
 }

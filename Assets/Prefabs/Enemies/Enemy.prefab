@@ -151,6 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 423717201925621686, guid: 471dd13645a2c2340bf1d68d2f07ea13, type: 3}
   bulletForce: 80
+  damage: 0
 --- !u!195 &5276340787324887001
 NavMeshAgent:
   m_ObjectHideFlags: 0
