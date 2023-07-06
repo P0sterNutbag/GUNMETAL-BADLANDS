@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveDirection = 0f;
     public float currentSpeed = 0f;
     public float boostSpeed = 0f;
-    private float groundDistance = 0.4f;
+    private float groundDistance = 1f;
 
     private bool isBoosting = false;
     private bool isBoostVertical = false;

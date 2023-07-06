@@ -7,7 +7,6 @@ public class OverheadMovement : MonoBehaviour
 {
     public CharacterController controller;
     public Legs stats;
-    public Camera cam;
 
     [HideInInspector]
     public float moveDirection = 0f;
@@ -17,13 +16,6 @@ public class OverheadMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Get the mouse position
-        Vector3 mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
-        //mousePosition.z = transform.position.z; // Match the player's z-position
-
-        // Rotate the player towards the mouse using LookAt
-        transform.LookAt(mousePosition);
-
         // Get movement variables
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
