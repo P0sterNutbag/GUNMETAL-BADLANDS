@@ -7,7 +7,6 @@ public class Missile : MonoBehaviour
     public GameObject owner;
 
     [HideInInspector]
-    public float maxSpeed;
     public float speed;
     public float explosionDamage;
     public Vector3 moveDirection;
@@ -22,7 +21,6 @@ public class Missile : MonoBehaviour
     }
     private void Update()
     {
-        speed = Mathf.Lerp(speed, maxSpeed, 0.01f);
         rb.velocity = moveDirection * speed; 
     }
 

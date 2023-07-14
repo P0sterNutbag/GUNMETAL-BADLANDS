@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2155697478101799971}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 45, y: -45, z: 0}
 --- !u!20 &1160076098
 Camera:
@@ -239,12 +239,22 @@ PrefabInstance:
       propertyPath: accelerationSpd
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9022767042457427981, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}
+      propertyPath: GunLeftObject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9022767042457427981, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}
+      propertyPath: GunRightObject
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3622648193772408995, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}
     - {fileID: 3622648193772408994, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}
     - {fileID: 8800954827481440292, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}
     - {fileID: 5363307277103869609, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}
     - {fileID: 3622648193772408993, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}
+    - {fileID: 3622648195087111352, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}
+    - {fileID: 3622648192984489216, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}
 --- !u!1 &2155697478069526424 stripped
 GameObject:
@@ -273,6 +283,18 @@ MonoBehaviour:
   moveDirection: 0
   currentSpeed: 0
   moveRotation: 0
+--- !u!114 &1228330033868520566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2155697478101799970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5deca789cc783c040b2d454952537db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2155697478101799971 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3622648193234343613, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}
@@ -295,7 +317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb75b24858e048847b9292fefcdce7de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 1160076098}
 --- !u!143 &6115638792497610811 stripped
 CharacterController:
   m_CorrespondingSourceObject: {fileID: 8895652897084949157, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}

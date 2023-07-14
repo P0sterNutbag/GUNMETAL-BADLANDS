@@ -25,10 +25,8 @@ public class GunStats : Equipment
     public float ammo = 100;
 
     [Header("Missile Values")]
-    [Tooltip("Initial speed of missile")]
-    public float missileForceStart = 5f;
-    [Tooltip("Max speed of missile")]
-    public float missileForceMax = 20f;
+    [Tooltip("Missile Speed")]
+    public float missileForce = 20f;
 
     [Header("Burstfire Values")]
     public float bulletsPerShot = 3f;

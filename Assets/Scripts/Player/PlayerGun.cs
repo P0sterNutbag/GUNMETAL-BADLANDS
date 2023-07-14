@@ -199,6 +199,7 @@ public class PlayerGun : MonoBehaviour
                     }
                 }
                 break;
+
             case gunType.projectile:
                 // Create a new bullet object at the fire point
                 GameObject projectileBullet = Instantiate(bulletPrefab, firePoint, fireRotation);
@@ -208,6 +209,7 @@ public class PlayerGun : MonoBehaviour
                 Rigidbody rb = projectileBullet.GetComponent<Rigidbody>();
                 rb.AddForce(aimDir * stats.bulletForce, ForceMode.Impulse);
                 break;
+
             case gunType.missile:
                 // Create a new bullet object at the fire point
                 GameObject missile = Instantiate(missilePrefab, firePoint, fireRotation);
@@ -215,8 +217,7 @@ public class PlayerGun : MonoBehaviour
                 // set missile target position
                 //missile.GetComponent<Missile>().target = aimPoint;
                 Missile script = missile.GetComponent<Missile>();
-                script.speed = stats.missileForceStart;
-                script.maxSpeed = stats.missileForceMax;
+                script.speed = stats.missileForce;
                 script.explosionDamage = stats.damage;
                 script.owner = player.gameObject;
                 script.moveDirection = aimDir;
@@ -227,8 +228,9 @@ public class PlayerGun : MonoBehaviour
 
                 // Get the rigidbody component of the bullet object and apply a force to it to shoot it
                 rb = missile.GetComponent<Rigidbody>();
-                rb.AddForce(aimDir * stats.missileForceStart, ForceMode.Impulse);
+                rb.AddForce(aimDir * stats.missileForce, ForceMode.Impulse);
                 break;
+
             case gunType.charge:
                 // make bullet trail
                 bullet = Instantiate(bulletTrail, firePoint, Quaternion.identity);
