@@ -784,11 +784,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3622648193234343613, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.93
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3622648193234343613, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 216.2
+      value: 205.6
       objectReference: {fileID: 0}
     - target: {fileID: 3622648193234343613, guid: 352f0ca166ac09f4098c3816afca2684, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1607,6 +1607,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UICanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1127362906263938351, guid: 70020cf6fb395b543969f814bd98d46d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1127362906278682191, guid: 70020cf6fb395b543969f814bd98d46d, type: 3}
       propertyPath: player
       value: 
@@ -1665,6 +1669,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4907828363154093099, guid: e60ee302f06ca0d4baeeb24349595d04, type: 3}
     - target: {fileID: 381950344275548699, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 381950344275548699, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0
       objectReference: {fileID: 0}
@@ -1710,19 +1718,19 @@ PrefabInstance:
       objectReference: {fileID: 511585932}
     - target: {fileID: 3406645076314846488, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
       propertyPath: rangeToAttack
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3406645076314846488, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
       propertyPath: maxRayDistince
-      value: 30
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 3406645076314846488, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
       propertyPath: minRayDistince
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3406645076314846488, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
       propertyPath: rangeToChaseAgain
-      value: 100
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 3406645076314846491, guid: 0ac233de283a7f24ca83eff16b2482af, type: 3}
       propertyPath: m_Name

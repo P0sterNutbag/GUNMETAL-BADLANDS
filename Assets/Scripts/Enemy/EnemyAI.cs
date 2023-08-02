@@ -64,7 +64,7 @@ public class EnemyAI : MonoBehaviour
             //RotateTowardsTarget();
         }
 
-        Debug.Log(currState);
+        //Debug.Log(navMeshAgent.destination);
 
 
     }
@@ -105,15 +105,14 @@ public class EnemyAI : MonoBehaviour
 
         //float randFloat = Random.Range(minRayDistince, maxRayDistince + 1);
 
-
-        if (Vector3.Distance(transform.position, strafePosition) > 1f && hasStrafePosition)
+        if (Vector3.Distance(transform.position, strafePosition) > 5f && hasStrafePosition)
         {
             transform.LookAt(targetPlayer.transform.position);
             navMeshAgent.SetDestination(strafePosition);
         }
         else
         {
-            // rangeToChaseAgain prevents the AI from flipping between chase and attack
+            // rangeToChaseAgain prevents the AI from flipping between chase and attack too quickly
 
             if (Vector3.Distance(targetPlayer.transform.position, transform.position) > rangeToAttack + rangeToChaseAgain)
             {
@@ -162,6 +161,7 @@ public class EnemyAI : MonoBehaviour
 
         randInt *= -1;
         ray.transform.Rotate(0, 0, randFloat * randInt, Space.Self);
+
     }
 
     void Patrol()

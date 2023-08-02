@@ -13,7 +13,7 @@ public class EnemyShooting : MonoBehaviour
         //print("Shoot");
         CalcWhereToShoot();
         ShootProjectile(targetPlayer);
-        Debug.Log("bang");
+        // Debug.Log("bang");
         // Steal code from player, calc how to hit enemy
     }
 

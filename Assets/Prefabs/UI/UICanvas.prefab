@@ -227,6 +227,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridInventory
       objectReference: {fileID: 0}
+    - target: {fileID: 167062563457757774, guid: c2263c18046dc0942a9429158955eb09, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2263c18046dc0942a9429158955eb09, type: 3}
 --- !u!224 &1127362907419476410 stripped
